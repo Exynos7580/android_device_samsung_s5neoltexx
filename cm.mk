@@ -14,8 +14,8 @@
 # limitations under the License.
 #
 
-# Inherit from j7eltexx device
-$(call inherit-product, device/samsung/j7eltexx/device.mk)
+# Inherit from a5xeltexx device
+$(call inherit-product, device/samsung/a5xeltexx/device.mk)
 
 # Inherit common CM phone.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
@@ -24,7 +24,7 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := cm_j7eltexx
-PRODUCT_DEVICE := j7eltexx
+PRODUCT_NAME := cm_a5xeltexx
+PRODUCT_DEVICE := a5xeltexx
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung

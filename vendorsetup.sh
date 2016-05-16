@@ -1,2 +1,2 @@
-add_lunch_combo cm_j7eltexx-eng
-add_lunch_combo cm_j7eltexx-userdebug
+add_lunch_combo cm_a5xeltexx-eng
+add_lunch_combo cm_a5xeltexx-userdebug

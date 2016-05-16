@@ -54,23 +54,22 @@ void vendor_load_properties()
 
     property_get("ro.bootloader", bootloader);
 
-    if (strstr(bootloader, "J700F")) {
-        property_set("ro.build.fingerprint", "samsung/j7eltexx/j7elte:5.1.1/LMY48B/J700FXXU2APC4:user/release-keys");
-        property_set("ro.build.description", "j7eltexx-user 5.1.1 LMY48B J700FXXU2APC4 release-keys");
-        property_set("ro.product.model", "SM-J700F");
-        property_set("ro.product.device", "j7elte");
+    if (strstr(bootloader, "A510F")) {
+        property_set("ro.build.fingerprint", "samsung/a5xeltexx/a5xelte:5.1.1/LMY47X/A510FXXS2APD1:user/release-keys");
+        property_set("ro.build.description", "a5xeltexx-user 5.1.1 LMY47X A510FXXS2APD1 release-keys");
+        property_set("ro.product.model", "SM-A510F");
+        property_set("ro.product.device", "a5xelte");
 	make_me_dual();
-    } else if (strstr(bootloader, "J700M")) {
-        property_set("ro.build.fingerprint", "samsung/j7eltexx/j7elte:5.1.1/LMY47X/J700MUBU1APA1:user/release-keys");
-        property_set("ro.build.description", "j7eltexx-user 5.1.1 LMY47X J700MUBU1APA1 release-keys");
-        property_set("ro.product.model", "SM-J700M");
-        property_set("ro.product.device", "j7elte");
+    } else if (strstr(bootloader, "A510M")) {
+        property_set("ro.build.fingerprint", "samsung/a5xelteub/a5xelte:5.1.1/LMY47X/A510MUBS1APC1:user/release-keys");
+        property_set("ro.build.description", "a5xelteub-user 5.1.1 LMY47X A510MUBS1APC1 release-keys");
+        property_set("ro.product.model", "SM-A510M");
+        property_set("ro.product.device", "a5xelte");
+	property_set("ro.product.name", "a5xelteub");
+	make_me_dual();
     } else {
-        property_set("ro.build.fingerprint", "samsung/j7e3gxx/j7e3g:5.1.1/LMY48B/J700HXXU2APC5:user/release-keys");
-        property_set("ro.build.description", "j7e3gxx-user 5.1.1 LMY48B J700HXXU2APC5 release-keys");
-        property_set("ro.product.model", "SM-J700H");
-        property_set("ro.product.device", "j7e3g");
-	make_me_dual();
+        property_set("ro.product.model", "SM-A510Y");
+        property_set("ro.product.device", "a5xelte");
     }
 
     property_get("ro.product.device", device);

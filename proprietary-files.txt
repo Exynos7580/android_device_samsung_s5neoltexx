@@ -98,7 +98,7 @@ vendor/lib/liblvverx_3.27.02.so
 vendor/lib/liblvvetx_3.27.02.so
 
 # Bluetooth
-vendor/firmware/bcm43430A1_V0032.0076.hcd
+vendor/firmware/bcm43454_V0091.0123.hcd
 
 ### Camera
 lib/hw/camera.universal7580.so

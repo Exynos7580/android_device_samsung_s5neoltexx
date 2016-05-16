@@ -14,21 +14,21 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/j7eltexx
+LOCAL_PATH := device/samsung/a5xeltexx
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Overlays
-#DEVICE_PACKAGE_OVERLAYS += device/samsung/j7eltexx/overlay
+#DEVICE_PACKAGE_OVERLAYS += device/samsung/a5xeltexx/overlay
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := 320dpi
-PRODUCT_AAPT_PREBUILT_DPI := xhdpi hdpi
+PRODUCT_AAPT_PREF_CONFIG := 480dpi
+PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi hdpi
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 1280
-TARGET_SCREEN_WIDTH := 720
+TARGET_SCREEN_HEIGHT := 1980
+TARGET_SCREEN_WIDTH := 1080
 
 # Audio
 PRODUCT_COPY_FILES += \
@@ -82,4 +82,4 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, device/samsung/exynos7580-common/device-common.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/samsung/j7eltexx/j7eltexx-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/a5xeltexx/a5xeltexx-vendor.mk)

@@ -17,15 +17,12 @@
 # Inherit from Exynos7580-common
 include device/samsung/exynos7580-common/BoardConfigCommon.mk
 
-TARGET_OTA_ASSERT_DEVICE := j7e3g,j7e3gxx,j7elte,j7eltexx
+TARGET_OTA_ASSERT_DEVICE := a5xe3g,a5xe3gxx,a5xelte,a5xeltexx
 
-DEVICE_PATH := device/samsung/j7eltexx
+DEVICE_PATH := device/samsung/a5xeltexx
 
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
-
-# CPU
-ENABLE_CPUSETS := true
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_sec
@@ -33,8 +30,8 @@ TARGET_UNIFIED_DEVICE := true
 
 # Kernel
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --dt $(DEVICE_PATH)/dt.img
-TARGET_KERNEL_CONFIG := cyanogenmod_j7elte_defconfig
-TARGET_KERNEL_SOURCE := kernel/samsung/exynos7580
+TARGET_KERNEL_CONFIG := cyanogenmod_a5xelte_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/a5xelte
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 29360128
@@ -54,4 +51,4 @@ TARGET_GLOBAL_CFLAGS += -DANDROID_MULTI_SIM
 TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM
 
 # inherit from the proprietary version
--include vendor/samsung/j7e3gxx/BoardConfigVendor.mk
+-include vendor/samsung/a5xe3gxx/BoardConfigVendor.mk

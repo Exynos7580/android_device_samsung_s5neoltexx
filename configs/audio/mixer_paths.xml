@@ -146,28 +146,24 @@
 	</path>
 
 	<path name="dev-speaker">
-		<path name="dev-codec-disable-analog-bypass" />
 		<ctl name="HP HP On" value="0" />
 		<ctl name="EP EP On" value="0" />
 		<ctl name="SPK SPK On" value="1" />
 	</path>
 
 	<path name="dev-handset">
-		<path name="dev-codec-disable-analog-bypass" />
 		<ctl name="HP HP On" value="0" />
 		<ctl name="SPK SPK On" value="0" />
 		<ctl name="EP EP On" value="1" />
 	</path>
 
 	<path name="dev-headset">
-		<path name="dev-codec-disable-analog-bypass" />
 		<ctl name="EP EP On" value="0" />
 		<ctl name="SPK SPK On" value="0" />
 		<ctl name="HP HP On" value="1" />
 	</path>
 
 	<path name="dev-speaker-headset">
-		<path name="dev-codec-disable-analog-bypass" />
 		<ctl name="EP EP On" value="0" />
 		<ctl name="HP HP On" value="1" />
 		<ctl name="SPK SPK On" value="1" />
@@ -186,7 +182,6 @@
 	</path>
 
 	<path name="dev-codec-out-disable">
-		<path name="dev-codec-disable-analog-bypass" />
 		<ctl name="HP HP On" value="0" />
 		<ctl name="EP EP On" value="0" />
 		<ctl name="SPK SPK On" value="0" />
@@ -215,11 +210,59 @@
 	</path>
 
 	<path name="dev-2nd-mic">
-		<path name="dev-main-mic" />
+		<ctl name="ADCL Mixer MIC1L Switch" value="0" />
+		<ctl name="ADCL Mixer MIC2L Switch" value="0" />
+		<ctl name="ADCL Mixer LINELL Switch" value="1" />
+		<ctl name="ADCL Mixer LINERL Switch" value="1" />
+		<ctl name="ADCR Mixer MIC1R Switch" value="0" />
+		<ctl name="ADCR Mixer MIC2R Switch" value="0" />
+		<ctl name="ADCR Mixer LINELR Switch" value="1" />
+		<ctl name="ADCR Mixer LINERR Switch" value="1" />
+		<ctl name="MIC2 MIC2 On" value="0" />
+		<ctl name="MIC1 MIC1 On" value="0" />
+		<ctl name="LINEIN LINEIN On" value="1" />
 	</path>
 
-	<path name="dev-dual-mic">
-		<path name="dev-main-mic" />
+	<path name="dev-dual-main_left-2nd_right-mic">
+		<ctl name="ADCL Mixer MIC1L Switch" value="1" />
+		<ctl name="ADCL Mixer MIC2L Switch" value="0" />
+		<ctl name="ADCL Mixer LINELL Switch" value="0" />
+		<ctl name="ADCL Mixer LINERL Switch" value="0" />
+		<ctl name="ADCR Mixer MIC1R Switch" value="0" />
+		<ctl name="ADCR Mixer MIC2R Switch" value="0" />
+		<ctl name="ADCR Mixer LINELR Switch" value="1" />
+		<ctl name="ADCR Mixer LINERR Switch" value="1" />
+		<ctl name="MIC2 MIC2 On" value="0" />
+		<ctl name="MIC1 MIC1 On" value="1" />
+		<ctl name="LINEIN LINEIN On" value="1" />
+	</path>
+
+	<path name="dev-dual-main_right-2nd_left-mic">
+		<ctl name="ADCL Mixer MIC1L Switch" value="0" />
+		<ctl name="ADCL Mixer MIC2L Switch" value="0" />
+		<ctl name="ADCL Mixer LINELL Switch" value="1" />
+		<ctl name="ADCL Mixer LINERL Switch" value="1" />
+		<ctl name="ADCR Mixer MIC1R Switch" value="1" />
+		<ctl name="ADCR Mixer MIC2R Switch" value="0" />
+		<ctl name="ADCR Mixer LINELR Switch" value="0" />
+		<ctl name="ADCR Mixer LINERR Switch" value="0" />
+		<ctl name="MIC2 MIC2 On" value="0" />
+		<ctl name="MIC1 MIC1 On" value="1" />
+		<ctl name="LINEIN LINEIN On" value="1" />
+	</path>
+
+	<path name="dev-dual-both_mono-mic">
+		<ctl name="ADCL Mixer MIC1L Switch" value="1" />
+		<ctl name="ADCL Mixer MIC2L Switch" value="0" />
+		<ctl name="ADCL Mixer LINELL Switch" value="1" />
+		<ctl name="ADCL Mixer LINERL Switch" value="0" />
+		<ctl name="ADCR Mixer MIC1R Switch" value="0" />
+		<ctl name="ADCR Mixer MIC2R Switch" value="0" />
+		<ctl name="ADCR Mixer LINELR Switch" value="0" />
+		<ctl name="ADCR Mixer LINERR Switch" value="0" />
+		<ctl name="MIC2 MIC2 On" value="0" />
+		<ctl name="MIC1 MIC1 On" value="1" />
+		<ctl name="LINEIN LINEIN On" value="1" />
 	</path>
 
 	<path name="dev-headset-mic">
@@ -290,6 +333,8 @@
 
 	<path name="media-headset">
 		<path name="route-ap-tx" />
+		<ctl name="Chargepump Mode" value="VDD" />
+		<ctl name="DNC Max Gain" value="6" />
 		<path name="dev-headset" />
 	</path>
 
@@ -348,10 +393,14 @@
 
 	<path name="communication-headset">
 		<path name="media-headset" />
+		<ctl name="Chargepump Mode" value="VDD" />
+		<ctl name="DNC Max Gain" value="9" />
 	</path>
 
 	<path name="communication-headphone">
 		<path name="communication-headset" />
+		<ctl name="Chargepump Mode" value="VDD" />
+		<ctl name="DNC Max Gain" value="9" />
 	</path>
 
 	<path name="communication-bt-sco-headset">
@@ -390,10 +439,14 @@
 
 	<path name="voip-headset">
 		<path name="communication-headset" />
+		<ctl name="Chargepump Mode" value="VDD" />
+		<ctl name="DNC Max Gain" value="9" />
 	</path>
 
 	<path name="voip-headphone">
 		<path name="communication-headset" />
+		<ctl name="Chargepump Mode" value="VDD" />
+		<ctl name="DNC Max Gain" value="9" />
 	</path>
 
 	<path name="voip-bt-sco-headset">
@@ -566,6 +619,8 @@
 
 	<path name="incall_nb-headphone">
 		<path name="incall_nb-headset" />
+		<ctl name="Chargepump Mode" value="VDD" />
+		<ctl name="DNC Max Gain" value="9" />
 	</path>
 
 	<path name="incall_nb-bt-sco-headset">
@@ -611,10 +666,14 @@
 
 	<path name="incall_wb-headset">
 		<path name="incall_nb-headset" />
+		<ctl name="Chargepump Mode" value="VDD" />
+		<ctl name="DNC Max Gain" value="9" />
 	</path>
 
 	<path name="incall_wb-headphone">
 		<path name="incall_nb-headphone" />
+		<ctl name="Chargepump Mode" value="VDD" />
+		<ctl name="DNC Max Gain" value="9" />
 	</path>
 
 	<path name="incall_wb-bt-sco-headset">
@@ -839,7 +898,7 @@
 	<!-- camcorder input -->
 	<path name="camcorder-mic">
 		<path name="route-ap-rx" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_right-2nd_left-mic" />
 	</path>
 
 	<path name="camcorder-headset-mic">
@@ -866,24 +925,24 @@
 	<!-- interview input -->
 	<path name="interview-mic">
 		<path name="route-ap-rx" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_left-2nd_right-mic" />
 	</path>
 
 	<!-- meeting input -->
 	<path name="meeting-mic">
 		<path name="route-ap-rx" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_left-2nd_right-mic" />
 	</path>
 
 	<!-- lpsd control input -->
 	<path name="lpsd_control-mic">
-		<!-- TODO: We will make this -->
+		<path name="media-mic" />
 	</path>
 
 	<!-- voice control input -->
 	<path name="voice_control-mic">
 		<path name="route-ap-rx" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_left-2nd_right-mic" />
 	</path>
 
 	<!-- recognition input -->
@@ -932,7 +991,7 @@
 	<!-- svoice/carmode samsung input -->
 	<path name="dualmic_samsung_engine-mic">
 		<path name="route-ap-rx" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_left-2nd_right-mic" />
 	</path>
 
 	<path name="dualmic_samsung_engine-headset-mic">
@@ -965,7 +1024,7 @@
 
 	<path name="communication-speaker-mic">
 		<path name="route-ap-rx" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_right-2nd_left-mic" />
 	</path>
 
 	<path name="communication-headset-mic">
@@ -982,7 +1041,7 @@
 
 	<path name="samsung_voip-handset-mic">
 		<path name="route-ap-rx" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_left-2nd_right-mic" />
 	</path>
 
 	<path name="samsung_voip-speaker-mic">
@@ -1029,7 +1088,7 @@
 
 	<path name="wificall_wb-speaker-mic">
 		<path name="route-ap-rx" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_right-2nd_left-mic" />
 	</path>
 
 	<path name="wificall_wb-headset-mic">
@@ -1050,7 +1109,7 @@
 
 	<path name="wificall_nb-speaker-mic">
 		<path name="route-ap-rx" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_right-2nd_left-mic" />
 	</path>
 
 	<path name="wificall_nb-headset-mic">
@@ -1071,7 +1130,7 @@
 
 	<path name="wificall_wb_extra_vol-speaker-mic">
 		<path name="route-ap-rx" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_right-2nd_left-mic" />
 	</path>
 
 	<path name="wificall_wb_extra_vol-headset-mic">
@@ -1092,7 +1151,7 @@
 
 	<path name="wificall_nb_extra_vol-speaker-mic">
 		<path name="route-ap-rx" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_right-2nd_left-mic" />
 	</path>
 
 	<path name="wificall_nb_extra_vol-headset-mic">
@@ -1175,12 +1234,12 @@
 	<!-- NB -->
 	<path name="incall_nb-handset-mic">
 		<path name="route-cp" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_left-2nd_right-mic" />
 	</path>
 
 	<path name="incall_nb-speaker-mic">
 		<path name="route-cp" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_right-2nd_left-mic" />
 	</path>
 
 	<path name="incall_nb-headset-mic">
@@ -1408,12 +1467,12 @@
 
 	<path name="loopback_packet-handset-dualmic">
 		<path name="route-cp" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_left-2nd_right-mic" />
 	</path>
 
 	<path name="loopback_packet-speaker-dualmic">
 		<path name="route-cp" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_right-2nd_left-mic" />
 	</path>
 
 	<!-- TTY Mode Input -->
@@ -1447,7 +1506,7 @@
 
 	<path name="echo_test-dualmic">
 		<path name="route-ap-rx" />
-		<path name="dev-dual-mic" />
+		<path name="dev-dual-main_left-2nd_right-mic" />
 	</path>
 
 	<!-- call forwarding input -->
@@ -1505,27 +1564,26 @@
 	<!-- media playback volume -->
 	<path name="gain-media-handset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="116" />
+		<ctl name="DAC Gain" value="128" />
 		<ctl name="Earphone Volume" value="0" />
 	</path>
 
 	<path name="gain-media-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="121" />
-		<ctl name="Speaker Volume" value="5" />
+		<ctl name="DAC Gain" value="130" />
+		<ctl name="Speaker Volume" value="0" />
 	</path>
 
 	<path name="gain-media-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="121" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-media-speaker-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="121" />
-		<ctl name="Speaker Volume" value="3" />
-		<ctl name="Headphone Volume" value="36" />
+		<ctl name="DAC Gain" value="127" />
+		<ctl name="Speaker Volume" value="0" />
+		<ctl name="Headphone Volume" value="32" />
 	</path>
 
 	<path name="gain-media-bt-sco-headset">
@@ -1547,21 +1605,20 @@
 
 	<path name="gain-ringtone-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="105" />
-		<ctl name="Speaker Volume" value="0" />
+		<ctl name="DAC Gain" value="127" />
+		<ctl name="Speaker Volume" value="3" />
 	</path>
 
 	<path name="gain-ringtone-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="105" />
-		<ctl name="Headphone Volume" value="36" />
+		<ctl name="DAC Gain" value="127" />
 	</path>
 
 	<path name="gain-ringtone-speaker-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="121" />
-		<ctl name="Speaker Volume" value="3" />
-		<ctl name="Headphone Volume" value="36" />
+		<ctl name="DAC Gain" value="127" />
+		<ctl name="Speaker Volume" value="0" />
+		<ctl name="Headphone Volume" value="21" />
 	</path>
 
 	<path name="gain-ringtone-bt-sco-headset">
@@ -1583,20 +1640,18 @@
 
 	<path name="gain-communication-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="123" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="127" />
+		<ctl name="Speaker Volume" value="4" />
 	</path>
 
 	<path name="gain-communication-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="117" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-communication-headphone">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-communication-bt-sco-headset">
@@ -1619,13 +1674,11 @@
 	<path name="gain-samsung_voip-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-samsung_voip-headphone">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-samsung_voip-bt-sco-headset">
@@ -1642,13 +1695,12 @@
 	<path name="gain-voip-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="Speaker Volume" value="4" />
 	</path>
 
 	<path name="gain-voip-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
+		<ctl name="DAC Gain" value="117" />
 	</path>
 
 	<path name="gain-voip-headphone">
@@ -1664,13 +1716,13 @@
 	<path name="gain-wificall_wb-handset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-wificall_wb-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="117" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<path name="gain-wificall_wb-headset">
@@ -1691,23 +1743,23 @@
 	<path name="gain-wificall_nb-handset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-wificall_nb-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="119" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<path name="gain-wificall_nb-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="122" />
+		<ctl name="DAC Gain" value="127" />
 	</path>
 
 	<path name="gain-wificall_nb-headphone">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="122" />
+		<ctl name="DAC Gain" value="127" />
 	</path>
 
 	<path name="gain-wificall_nb-bt-sco-headset">
@@ -1718,13 +1770,13 @@
 	<path name="gain-wificall_wb_extra_vol-handset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-wificall_wb_extra_vol-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="120" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<path name="gain-wificall_wb_extra_vol-headset">
@@ -1745,13 +1797,13 @@
 	<path name="gain-wificall_nb_extra_vol-handset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-wificall_nb_extra_vol-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="120" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<path name="gain-wificall_nb_extra_vol-headset">
@@ -1772,25 +1824,23 @@
 	<path name="gain-video_call-handset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-video_call-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="119" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<path name="gain-video_call-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="120" />
-		<ctl name="Headphone Volume" value="36" />
+		<ctl name="DAC Gain" value="127" />
 	</path>
 
 	<path name="gain-video_call-headphone">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="120" />
-		<ctl name="Headphone Volume" value="36" />
+		<ctl name="DAC Gain" value="127" />
 	</path>
 
 	<path name="gain-video_call-bt-sco-headset">
@@ -1801,25 +1851,23 @@
 	<path name="gain-volte_vt_ap_nb-handset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-volte_vt_ap_nb-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="119" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<path name="gain-volte_vt_ap_nb-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-volte_vt_ap_nb-headphone">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-volte_vt_ap_nb-bt-sco-headset">
@@ -1830,25 +1878,23 @@
 	<path name="gain-volte_vt_ap_wb-handset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-volte_vt_ap_wb-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="117" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<path name="gain-volte_vt_ap_wb-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-volte_vt_ap_wb-headphone">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-volte_vt_ap_wb-bt-sco-headset">
@@ -1860,28 +1906,26 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-volte_cp_nb-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="119" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<path name="gain-volte_cp_nb-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-volte_cp_nb-headphone">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-volte_cp_nb-bt-sco-headset">
@@ -1894,14 +1938,14 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-volte_cp_nb_handover-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="119" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<!-- VoLTE CP NB/EXTRA_VOL playback volume -->
@@ -1909,14 +1953,14 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-volte_cp_nb_extra_vol-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="120" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<!-- VoLTE CP NB/EXTRA_VOL/HANDOVER playback volume -->
@@ -1924,14 +1968,14 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-volte_cp_nb_extra_vol_handover-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="120" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<!-- VoLTE VT CP NB playback volume -->
@@ -1939,28 +1983,26 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-volte_vt_cp_nb-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="119" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<path name="gain-volte_vt_cp_nb-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-volte_vt_cp_nb-headphone">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-volte_vt_cp_nb-bt-sco-headset">
@@ -1973,28 +2015,26 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-volte_cp_wb-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="117" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<path name="gain-volte_cp_wb-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-volte_cp_wb-headphone">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-volte_cp_wb-bt-sco-headset">
@@ -2007,14 +2047,14 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-volte_cp_wb_extra_vol-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="120" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<!-- VoLTE VT CP WB playback volume -->
@@ -2022,28 +2062,26 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-volte_vt_cp_wb-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="117" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<path name="gain-volte_vt_cp_wb-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-volte_vt_cp_wb-headphone">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-volte_vt_cp_wb-bt-sco-headset">
@@ -2057,28 +2095,26 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-incall_nb-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="119" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<path name="gain-incall_nb-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="122" />
-		<ctl name="Headphone Volume" value="36" />
+		<ctl name="DAC Gain" value="127" />
 	</path>
 
 	<path name="gain-incall_nb-headphone">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="122" />
-		<ctl name="Headphone Volume" value="36" />
+		<ctl name="DAC Gain" value="127" />
 	</path>
 
 	<path name="gain-incall_nb-bt-sco-headset">
@@ -2091,14 +2127,14 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-incall_nb_handover-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="117" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<!-- NB/EXTRA_VOL Volume-->
@@ -2106,14 +2142,14 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-incall_nb_extra_vol-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="120" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<!-- NB/EXTRA_VOL/HANDOVER Volume-->
@@ -2121,14 +2157,14 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-incall_nb_extra_vol_handover-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="120" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<!-- WB volume -->
@@ -2136,28 +2172,26 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-incall_wb-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="117" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<path name="gain-incall_wb-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-incall_wb-headphone">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-incall_wb-bt-sco-headset">
@@ -2170,14 +2204,14 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Earphone Volume" value="0" />
+		<ctl name="Earphone Volume" value="2" />
 	</path>
 
 	<path name="gain-incall_wb_extra_vol-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
-		<ctl name="Speaker Volume" value="3" />
+		<ctl name="DAC Gain" value="120" />
+		<ctl name="Speaker Volume" value="6" />
 	</path>
 
 	<!-- Loopback (no delay) volume -->
@@ -2185,7 +2219,6 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<!-- Packet Loopback output volume-->
@@ -2207,7 +2240,6 @@
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<!-- TTY Mode volume-->
@@ -2220,7 +2252,6 @@
 	<path name="gain-tty_mode-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<!-- call forwarding output volume -->
@@ -2245,7 +2276,6 @@
 	<path name="gain-call_forwarding_slave-headset">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="DAC Gain" value="127" />
-		<ctl name="Headphone Volume" value="36" />
 	</path>
 
 	<path name="gain-call_forwarding_slave-headphone">
@@ -2267,7 +2297,7 @@
 	</path>
 
 	<path name="gain-media-headset-mic">
-		<ctl name="MIC2 Volume" value="11" />
+		<ctl name="MIC2 Volume" value="4" />
 		<ctl name="MIC2 Boost Volume" value="2" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
@@ -2286,53 +2316,56 @@
 
 	<!-- camcorder input volume -->
 	<path name="gain-camcorder-mic">
-		<ctl name="MIC1 Volume" value="14" />
-		<ctl name="MIC1 Boost Volume" value="0" />
-		<ctl name="ADC Left Gain" value="150" />
-		<ctl name="ADC Right Gain" value="150" />
+		<ctl name="MIC1 Volume" value="10" />
+		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="Line-in Volume" value="4" />
+		<ctl name="ADC Left Gain" value="138" />
+		<ctl name="ADC Right Gain" value="140" />
 	</path>
 
 	<path name="gain-camcorder-headset-mic">
-		<ctl name="MIC2 Volume" value="11" />
+		<ctl name="MIC2 Volume" value="8" />
 		<ctl name="MIC2 Boost Volume" value="2" />
-		<ctl name="ADC Left Gain" value="127" />
-		<ctl name="ADC Right Gain" value="127" />
+		<ctl name="ADC Left Gain" value="137" />
+		<ctl name="ADC Right Gain" value="137" />
 	</path>
 
 	<path name="gain-camcorder-headphone-mic">
-		<ctl name="MIC1 Volume" value="14" />
-		<ctl name="MIC1 Boost Volume" value="0" />
-		<ctl name="ADC Left Gain" value="150" />
-		<ctl name="ADC Right Gain" value="150" />
+		<ctl name="MIC1 Volume" value="8" />
+		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="Line-in Volume" value="4" />
+		<ctl name="ADC Left Gain" value="147" />
+		<ctl name="ADC Right Gain" value="147" />
 	</path>
 
 	<!-- voice recording input volume -->
 
 	<path name="gain-recording-mic">
-		<ctl name="MIC1 Volume" value="14" />
-		<ctl name="MIC1 Boost Volume" value="0" />
-		<ctl name="ADC Left Gain" value="150" />
-		<ctl name="ADC Right Gain" value="150" />
+		<ctl name="MIC1 Volume" value="8" />
+		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="ADC Left Gain" value="129" />
+		<ctl name="ADC Right Gain" value="129" />
 	</path>
 
 	<path name="gain-recording-headset-mic">
-		<ctl name="MIC2 Volume" value="22" />
-		<ctl name="MIC2 Boost Volume" value="0" />
-		<ctl name="ADC Left Gain" value="127" />
-		<ctl name="ADC Right Gain" value="127" />
+		<ctl name="MIC2 Volume" value="8" />
+		<ctl name="MIC2 Boost Volume" value="2" />
+		<ctl name="ADC Left Gain" value="137" />
+		<ctl name="ADC Right Gain" value="137" />
 	</path>
 
 	<path name="gain-recording-headphone-mic">
-		<ctl name="MIC1 Volume" value="14" />
-		<ctl name="MIC1 Boost Volume" value="0" />
-		<ctl name="ADC Left Gain" value="150" />
-		<ctl name="ADC Right Gain" value="150" />
+		<ctl name="MIC1 Volume" value="8" />
+		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="ADC Left Gain" value="145" />
+		<ctl name="ADC Right Gain" value="145" />
 	</path>
 
 	<!-- interview input volume -->
 	<path name="gain-interview-mic">
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="Line-in Volume" value="4" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2341,6 +2374,7 @@
 	<path name="gain-meeting-mic">
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="Line-in Volume" value="4" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2357,6 +2391,7 @@
 	<path name="gain-voice_control-mic">
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="Line-in Volume" value="4" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2365,22 +2400,22 @@
 	<path name="gain-recognition-mic">
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
-		<ctl name="ADC Left Gain" value="127" />
-		<ctl name="ADC Right Gain" value="127" />
+		<ctl name="ADC Left Gain" value="143" />
+		<ctl name="ADC Right Gain" value="143" />
 	</path>
 
 	<path name="gain-recognition-headset-mic">
 		<ctl name="MIC2 Volume" value="11" />
 		<ctl name="MIC2 Boost Volume" value="2" />
-		<ctl name="ADC Left Gain" value="127" />
-		<ctl name="ADC Right Gain" value="127" />
+		<ctl name="ADC Left Gain" value="147" />
+		<ctl name="ADC Right Gain" value="147" />
 	</path>
 
 	<path name="gain-recognition-headphone-mic">
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
-		<ctl name="ADC Left Gain" value="127" />
-		<ctl name="ADC Right Gain" value="127" />
+		<ctl name="ADC Left Gain" value="143" />
+		<ctl name="ADC Right Gain" value="143" />
 	</path>
 
 	<path name="gain-recognition-bt-sco-headset-in">
@@ -2429,8 +2464,10 @@
 	<path name="gain-dualmic_samsung_engine-mic">
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
-		<ctl name="ADC Left Gain" value="127" />
-		<ctl name="ADC Right Gain" value="127" />
+		<ctl name="MIC2 Volume" value="11" />
+		<ctl name="MIC2 Boost Volume" value="2" />
+		<ctl name="ADC Left Gain" value="143" />
+		<ctl name="ADC Right Gain" value="143" />
 	</path>
 
 	<path name="gain-dualmic_samsung_engine-headset-mic">
@@ -2448,8 +2485,9 @@
 	<path name="gain-dualmic_external_engine-mic">
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
-		<ctl name="ADC Left Gain" value="127" />
-		<ctl name="ADC Right Gain" value="127" />
+		<ctl name="Line-in Volume" value="4" />
+		<ctl name="ADC Left Gain" value="143" />
+		<ctl name="ADC Right Gain" value="143" />
 	</path>
 
 	<path name="gain-dualmic_external_engine-headset-mic">
@@ -2467,22 +2505,23 @@
 	<path name="gain-communication-handset-mic">
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
-		<ctl name="ADC Left Gain" value="135" />
-		<ctl name="ADC Right Gain" value="135" />
+		<ctl name="ADC Left Gain" value="132" />
+		<ctl name="ADC Right Gain" value="132" />
 	</path>
 
 	<path name="gain-communication-speaker-mic">
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
-		<ctl name="ADC Left Gain" value="125" />
-		<ctl name="ADC Right Gain" value="125" />
+		<ctl name="Line-in Volume" value="5" />
+		<ctl name="ADC Left Gain" value="127" />
+		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-communication-headset-mic">
 		<ctl name="MIC2 Volume" value="11" />
 		<ctl name="MIC2 Boost Volume" value="2" />
-		<ctl name="ADC Left Gain" value="147" />
-		<ctl name="ADC Right Gain" value="147" />
+		<ctl name="ADC Left Gain" value="127" />
+		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-communication-headphone-mic">
@@ -2500,6 +2539,7 @@
 	<path name="gain-samsung_voip-handset-mic">
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="Line-in Volume" value="4" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2507,6 +2547,7 @@
 	<path name="gain-samsung_voip-speaker-mic">
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="Line-in Volume" value="4" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2529,18 +2570,17 @@
 		<ctl name="S2801 RMIX2_LVL" value="0" />
 	</path>
 
-
 	<!-- Wificall wb input volume -->
 	<path name="gain-wificall_wb-handset-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-wificall_wb-speaker-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
 		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
@@ -2554,8 +2594,8 @@
 	</path>
 
 	<path name="gain-wificall_wb-headphone-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2566,30 +2606,30 @@
 
 	<!-- Wificall nb input volume -->
 	<path name="gain-wificall_nb-handset-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-wificall_nb-speaker-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
 		<ctl name="Line-in Volume" value="6" />
-		<ctl name="ADC Left Gain" value="135" />
-		<ctl name="ADC Right Gain" value="135" />
+		<ctl name="ADC Left Gain" value="127" />
+		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-wificall_nb-headset-mic">
 		<ctl name="MIC2 Volume" value="11" />
-		<ctl name="MIC2 Boost Volume" value="1" />
-		<ctl name="ADC Left Gain" value="139" />
-		<ctl name="ADC Right Gain" value="139" />
+		<ctl name="MIC2 Boost Volume" value="2" />
+		<ctl name="ADC Left Gain" value="127" />
+		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-wificall_nb-headphone-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2600,15 +2640,15 @@
 
 	<!-- Wificall wb extra input volume -->
 	<path name="gain-wificall_wb_extra_vol-handset-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-wificall_wb_extra_vol-speaker-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
 		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
@@ -2622,8 +2662,8 @@
 	</path>
 
 	<path name="gain-wificall_wb_extra_vol-headphone-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2634,18 +2674,18 @@
 
 	<!-- Wificall nb extra input volume -->
 	<path name="gain-wificall_nb_extra_vol-handset-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-wificall_nb_extra_vol-speaker-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
 		<ctl name="Line-in Volume" value="6" />
-		<ctl name="ADC Left Gain" value="135" />
-		<ctl name="ADC Right Gain" value="135" />
+		<ctl name="ADC Left Gain" value="127" />
+		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-wificall_nb_extra_vol-headset-mic">
@@ -2670,13 +2710,14 @@
 	<path name="gain-voip-handset-mic">
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
-		<ctl name="ADC Left Gain" value="127" />
-		<ctl name="ADC Right Gain" value="127" />
+		<ctl name="ADC Left Gain" value="132" />
+		<ctl name="ADC Right Gain" value="132" />
 	</path>
 
 	<path name="gain-voip-speaker-mic">
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="Line-in Volume" value="5" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2701,29 +2742,30 @@
 
 	<!-- Video call input volume -->
 	<path name="gain-video_call-handset-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-video_call-speaker-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
-		<ctl name="ADC Left Gain" value="147" />
-		<ctl name="ADC Right Gain" value="147" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
+		<ctl name="ADC Left Gain" value="127" />
+		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-video_call-headset-mic">
 		<ctl name="MIC2 Volume" value="11" />
 		<ctl name="MIC2 Boost Volume" value="2" />
-		<ctl name="ADC Left Gain" value="147" />
-		<ctl name="ADC Right Gain" value="147" />
+		<ctl name="ADC Left Gain" value="127" />
+		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-video_call-headphone-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2734,15 +2776,16 @@
 
 	<!-- VoLTE AP NB input volume -->
 	<path name="gain-volte_vt_ap_nb-handset-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-volte_vt_ap_nb-speaker-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2755,8 +2798,8 @@
 	</path>
 
 	<path name="gain-volte_vt_ap_nb-headphone-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2767,15 +2810,16 @@
 
 	<!-- VoLTE AP WB input volume -->
 	<path name="gain-volte_vt_ap_wb-handset-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-volte_vt_ap_wb-speaker-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2788,8 +2832,8 @@
 	</path>
 
 	<path name="gain-volte_vt_ap_wb-headphone-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2801,8 +2845,9 @@
 	<path name="gain-volte_vt_cp_nb-handset-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2810,8 +2855,9 @@
 	<path name="gain-volte_vt_cp_nb-speaker-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2828,8 +2874,8 @@
 	<path name="gain-volte_vt_cp_nb-headphone-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2843,8 +2889,9 @@
 	<path name="gain-volte_cp_nb-handset-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2852,8 +2899,9 @@
 	<path name="gain-volte_cp_nb-speaker-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2862,7 +2910,7 @@
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
 		<ctl name="MIC2 Volume" value="11" />
-		<ctl name="MIC2 Boost Volume" value="2" />
+		<ctl name="MIC2 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2870,8 +2918,8 @@
 	<path name="gain-volte_cp_nb-headphone-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2885,8 +2933,9 @@
 	<path name="gain-volte_cp_nb_handover-handset-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2894,8 +2943,9 @@
 	<path name="gain-volte_cp_nb_handover-speaker-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2904,8 +2954,9 @@
 	<path name="gain-volte_cp_nb_extra_vol-handset-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2913,8 +2964,9 @@
 	<path name="gain-volte_cp_nb_extra_vol-speaker-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2923,8 +2975,9 @@
 	<path name="gain-volte_cp_nb_extra_vol_handover-handset-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2932,8 +2985,9 @@
 	<path name="gain-volte_cp_nb_extra_vol_handover-speaker-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2942,8 +2996,9 @@
 	<path name="gain-volte_cp_wb-handset-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2951,8 +3006,9 @@
 	<path name="gain-volte_cp_wb-speaker-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2969,8 +3025,8 @@
 	<path name="gain-volte_cp_wb-headphone-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2984,8 +3040,9 @@
 	<path name="gain-volte_cp_wb_extra_vol-handset-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -2993,8 +3050,9 @@
 	<path name="gain-volte_cp_wb_extra_vol-speaker-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3003,8 +3061,9 @@
 	<path name="gain-volte_vt_cp_wb-handset-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3012,8 +3071,9 @@
 	<path name="gain-volte_vt_cp_wb-speaker-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3030,8 +3090,8 @@
 	<path name="gain-volte_vt_cp_wb-headphone-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3046,8 +3106,9 @@
 	<path name="gain-incall_nb-handset-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3055,26 +3116,27 @@
 	<path name="gain-incall_nb-speaker-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="1" />
-		<ctl name="ADC Left Gain" value="135" />
-		<ctl name="ADC Right Gain" value="135" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
+		<ctl name="ADC Left Gain" value="127" />
+		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-incall_nb-headset-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
 		<ctl name="MIC2 Volume" value="11" />
-		<ctl name="MIC2 Boost Volume" value="1" />
-		<ctl name="ADC Left Gain" value="139" />
-		<ctl name="ADC Right Gain" value="139" />
+		<ctl name="MIC2 Boost Volume" value="2" />
+		<ctl name="ADC Left Gain" value="127" />
+		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-incall_nb-headphone-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3088,8 +3150,9 @@
 	<path name="gain-incall_nb_handover-handset-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3097,8 +3160,9 @@
 	<path name="gain-incall_nb_handover-speaker-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3107,8 +3171,9 @@
 	<path name="gain-incall_nb_extra_vol-handset-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3116,18 +3181,20 @@
 	<path name="gain-incall_nb_extra_vol-speaker-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="1" />
-		<ctl name="ADC Left Gain" value="135" />
-		<ctl name="ADC Right Gain" value="135" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
+		<ctl name="ADC Left Gain" value="127" />
+		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<!-- NB/EXTRA_VOL/HANDOVER volume -->
 	<path name="gain-incall_nb_extra_vol_handover-handset-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3135,8 +3202,9 @@
 	<path name="gain-incall_nb_extra_vol_handover-speaker-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3145,8 +3213,9 @@
 	<path name="gain-incall_wb-handset-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3154,8 +3223,9 @@
 	<path name="gain-incall_wb-speaker-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3172,8 +3242,8 @@
 	<path name="gain-incall_wb-headphone-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3187,8 +3257,9 @@
 	<path name="gain-incall_wb_extra_vol-handset-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="17" />
+		<ctl name="MIC1 Boost Volume" value="1" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3196,8 +3267,9 @@
 	<path name="gain-incall_wb_extra_vol-speaker-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="MIC1 Volume" value="13" />
+		<ctl name="MIC1 Boost Volume" value="0" />
+		<ctl name="Line-in Volume" value="6" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3215,8 +3287,7 @@
 	<path name="gain-loopback-2nd-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="Line-in Volume" value="4" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3234,15 +3305,12 @@
 	<path name="gain-loopback_packet-2nd-mic">
 		<ctl name="S2801 RMIX1_LVL" value="0" />
 		<ctl name="S2801 RMIX2_LVL" value="0" />
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="Line-in Volume" value="4" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
 
 	<path name="gain-loopback_packet-3rd-mic">
-		<ctl name="S2801 RMIX1_LVL" value="0" />
-		<ctl name="S2801 RMIX2_LVL" value="0" />
 	</path>
 
 	<path name="gain-loopback_packet-headset-mic">
@@ -3259,6 +3327,7 @@
 		<ctl name="S2801 RMIX2_LVL" value="0" />
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="Line-in Volume" value="4" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3268,6 +3337,7 @@
 		<ctl name="S2801 RMIX2_LVL" value="0" />
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="Line-in Volume" value="4" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3312,6 +3382,7 @@
 	<path name="gain-call_forwarding_slave-speaker-mic">
 		<ctl name="MIC1 Volume" value="11" />
 		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="Line-in Volume" value="4" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3343,8 +3414,7 @@
 	</path>
 
 	<path name="gain-echo_test-2nd-mic">
-		<ctl name="MIC1 Volume" value="11" />
-		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="Line-in Volume" value="4" />
 		<ctl name="ADC Left Gain" value="127" />
 		<ctl name="ADC Right Gain" value="127" />
 	</path>
@@ -3353,26 +3423,24 @@
 	</path>
 
 	<path name="gain-echo_test-dualmic">
-		<ctl name="MIC1 Volume" value="11" />
+		<ctl name="MIC1 Volume" value="10" />
 		<ctl name="MIC1 Boost Volume" value="2" />
+		<ctl name="Line-in Volume" value="4" />
 		<ctl name="ADC Left Gain" value="127" />
-		<ctl name="ADC Right Gain" value="127" />
+		<ctl name="ADC Right Gain" value="128" />
 	</path>
 
 	<!-- FM Playback/Recording -->
 	<path name="gain-fm_radio-speaker" >
-		<ctl name="Line-in Volume" value="4" />
 		<ctl name="Speaker Volume" value="6" />
-		<ctl name="DAC Gain" value="121" />
+		<ctl name="DAC Gain" value="133" />
 	</path>
 
 	<path name="gain-fm_radio-headset" >
-		<ctl name="Line-in Volume" value="6" />
+		<ctl name="DAC Gain" value="127" />
 	</path>
 
 	<path name="gain-fm_radio-fm-recording" >
-		<ctl name="Line-in Volume" value="4" />
-		<ctl name="ADC Left Gain" value="127" />
-		<ctl name="ADC Right Gain" value="127" />
+		<ctl name="DAC Gain" value="127" />
 	</path>
 </mixer>

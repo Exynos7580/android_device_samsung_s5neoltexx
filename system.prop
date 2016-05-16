@@ -1,6 +1,3 @@
-# Audio
-audio_hal.disable_two_mic=true
-
 # Display
 ro.sf.lcd_density=320
 ro.opengles.version=196609
