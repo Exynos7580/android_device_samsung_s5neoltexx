@@ -1,6 +1,3 @@
-# Audio
-etc/firmware/dbmd2_vqe_fw_i2c.bin
-
 ### Wifi
 etc/wifi/bcmdhd_apsta.bin
 etc/wifi/bcmdhd_mfg.bin
@@ -14,6 +11,9 @@ vendor/firmware/mfc_fw.bin
 # Image subsystem
 vendor/firmware/fimc_is_fd.bin
 vendor/firmware/fimc_is_fw2_3l2.bin
+vendor/firmware/ois_fw_sec.bin
+vendor/firmware/ois_fw_sem.bin
+vendor/firmware/ois_fw_ve.bin
 
 # Noise supppression
 vendor/etc/nxp/BargeIn/Tx_ControlParams_WIDEBAND_ANALOG_DOCK.txt
@@ -109,9 +109,6 @@ lib/libsensorlistener.so
 vendor/firmware/setfile_3l2.bin
 vendor/firmware/setfile_5e3.bin
 
-# Chip Firmware
-etc/firmware/dbd2_fw.bin
-
 # GPS
 bin/gps.cer
 bin/gpsd
@@ -146,17 +143,36 @@ app/FFFFFFFF000000000000000000000001.drbin
 app/mcRegistry/00060308060501020000000000000000.tlbin
 app/mcRegistry/07010000000000000000000000000000.tlbin
 app/mcRegistry/07060000000000000000000000000000.tlbin
-app/mcRegistry/ffffffff000000000000000000000005.tlbin
 app/mcRegistry/ffffffff00000000000000000000000a.tlbin
 app/mcRegistry/ffffffff00000000000000000000000c.tlbin
 app/mcRegistry/ffffffff00000000000000000000000d.tlbin
+app/mcRegistry/ffffffff00000000000000000000000e.tlbin
 app/mcRegistry/ffffffff00000000000000000000000f.tlbin
+app/mcRegistry/ffffffff00000000000000000000001f.tlbin
+app/mcRegistry/ffffffff00000000000000000000002e.tlbin
+app/mcRegistry/ffffffff000000000000000000000004.tlbin
+app/mcRegistry/ffffffff000000000000000000000005.tlbin
 app/mcRegistry/ffffffff000000000000000000000012.tlbin
 app/mcRegistry/ffffffff000000000000000000000013.tlbin
 app/mcRegistry/ffffffff000000000000000000000016.tlbin
+app/mcRegistry/ffffffff000000000000000000000017.tlbin
 app/mcRegistry/ffffffff000000000000000000000019.tlbin
+app/mcRegistry/ffffffff000000000000000000000021.tlbin
+app/mcRegistry/ffffffff000000000000000000000028.tlbin
 app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
+app/mcRegistry/ffffffffd0000000000000000000000e.tlbin
+app/mcRegistry/ffffffffd00000000000000000000004.tlbin
+app/mcRegistry/ffffffffd00000000000000000000014.tlbin
 app/mcRegistry/ffffffffd00000000000000000000016.tlbin
+app/mcRegistry/ffffffffd00000000000000000000017.tlbin
+app/mcRegistry/fffffffff0000000000000000000001b.tlbin
 app/mcRegistry/fffffffff0000000000000000000001e.tlbin
 bin/cs
+
+# NFC
+etc/sec_s3fwrn5s_rfreg.bin
+etc/sec_s3fwrn5s_rfreg_for_old_hw.bin
+lib/hw/nfc_nci.universal7580.so
+vendor/firmware/ram_patch.fw
+vendor/firmware/sec_s3fwrn5s_firmware.bin
 
