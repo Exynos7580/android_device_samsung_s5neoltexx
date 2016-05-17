@@ -19,4 +19,6 @@ LOCAL_PATH := $(call my-dir)
 ifneq ($(filter s5neoltexx,$(TARGET_DEVICE)),)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 
+include $(CLEAR_VARS)
+
 endif

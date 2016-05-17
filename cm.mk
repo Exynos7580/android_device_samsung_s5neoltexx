@@ -14,14 +14,11 @@
 # limitations under the License.
 #
 
-# Inherit from s5neoltexx device
-$(call inherit-product, device/samsung/s5neoltexx/device.mk)
+# Initialise device config
+$(call inherit-product, device/samsung/s5neoltexx/full_s5neoltexx.mk)
 
 # Inherit common CM phone.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
-
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit nfc enhanced configuration
 $(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
