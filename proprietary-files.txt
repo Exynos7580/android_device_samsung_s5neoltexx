@@ -14,10 +14,7 @@ etc/wifi/nvram_net.txt
 vendor/firmware/mfc_fw.bin
 # Image subsystem
 vendor/firmware/fimc_is_fd.bin
-vendor/firmware/fimc_is_fw2_3l2.bin
-vendor/firmware/ois_fw_sec.bin
-vendor/firmware/ois_fw_sem.bin
-vendor/firmware/ois_fw_ve.bin
+vendor/firmware/fimc_is_fw2_3p3.bin
 
 # Noise supppression
 vendor/etc/nxp/BargeIn/Tx_ControlParams_WIDEBAND_ANALOG_DOCK.txt
@@ -110,7 +107,7 @@ lib/libexynoscamera.so
 lib/libhwjpeg.so
 lib/libuniplugin.so
 lib/libsensorlistener.so
-vendor/firmware/setfile_3l2.bin
+vendor/firmware/setfile_3p3.bin
 vendor/firmware/setfile_5e3.bin
 
 # GPS
@@ -172,5 +169,5 @@ bin/cs
 # NFC
 etc/sec_s3fwrn7_rfreg.bin
 lib/hw/nfc_nci.universal7580.so
-vendor/firmware/sec_s3fwrn5s_firmware.bin
+vendor/firmware/sec_s3fwrn7_firmware.bin
 
