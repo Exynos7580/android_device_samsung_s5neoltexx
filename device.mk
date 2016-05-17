@@ -19,7 +19,7 @@ LOCAL_PATH := device/samsung/s5neoltexx
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Overlays
-#DEVICE_PACKAGE_OVERLAYS += device/samsung/s5neoltexx/overlay
+DEVICE_PACKAGE_OVERLAYS += device/samsung/s5neoltexx/overlay
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
