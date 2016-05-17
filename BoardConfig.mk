@@ -17,9 +17,9 @@
 # Inherit from Exynos7580-common
 include device/samsung/exynos7580-common/BoardConfigCommon.mk
 
-TARGET_OTA_ASSERT_DEVICE := a5xe3g,a5xe3gxx,a5xelte,a5xeltexx
+TARGET_OTA_ASSERT_DEVICE := s5neo3g,s5neo3gxx,s5neolte,s5neoltexx
 
-DEVICE_PATH := device/samsung/a5xeltexx
+DEVICE_PATH := device/samsung/s5neoltexx
 
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
@@ -30,8 +30,8 @@ TARGET_UNIFIED_DEVICE := true
 
 # Kernel
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --dt $(DEVICE_PATH)/dt.img
-TARGET_KERNEL_CONFIG := cyanogenmod_a5xelte_defconfig
-TARGET_KERNEL_SOURCE := kernel/samsung/a5xelte
+TARGET_KERNEL_CONFIG := cyanogenmod_s5neolte_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/s5neolte
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 29360128
@@ -51,4 +51,4 @@ TARGET_GLOBAL_CFLAGS += -DANDROID_MULTI_SIM
 TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM
 
 # inherit from the proprietary version
--include vendor/samsung/a5xe3gxx/BoardConfigVendor.mk
+-include vendor/samsung/s5neo3gxx/BoardConfigVendor.mk

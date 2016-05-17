@@ -79,8 +79,8 @@ Only the three quirks included above are recognized at this point:
 
 <MediaCodecs>
     <Settings>
-        <Setting name="supports-multiple-secure-codecs" value="true" />
-        <Setting name="supports-secure-with-non-secure-codec" value="true" />
+        <String name="supports-multiple-secure-codecs" value="true" />
+        <String name="supports-secure-with-non-secure-codec" value="true" />
         <Setting name="max-video-encoder-input-buffers" value="9" />
     </Settings>
     <Decoders>
@@ -144,12 +144,12 @@ Only the three quirks included above are recognized at this point:
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="244800" />
             <Limit name="bitrate" range="1-40000000" />
-            <Limit name="concurrent-instances" max="16"/>
             <Feature name="adaptive-playback" />
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
             <Quirk name="decoder-ignores-streamcorrupt-error" />
             <Quirk name="video-controller-check-enable" />
+            <Limit name="concurrent-instances" max="16"/>	    
         </MediaCodec>
 
         <MediaCodec name="OMX.Exynos.MP3.Decoder">
@@ -164,11 +164,12 @@ Only the three quirks included above are recognized at this point:
             </Type>
             <Quirk name="needs-flush-before-disable" />
             <Quirk name="supports-multiple-frames-per-input" />
-        </MediaCodec>
+        </MediaCodec>    
 
         <MediaCodec name="OMX.Exynos.AAC.Decoder" type="audio/mp4a-latm">
             <Limit name="concurrent-instances" max="4"/>
         </MediaCodec>
+        
     </Decoders>
 
     <Encoders>
@@ -203,7 +204,7 @@ Only the three quirks included above are recognized at this point:
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" min="1" max="244800" />
             <Limit name="bitrate" range="1-40000000" />
-            <Limit name="concurrent-instances" max="16" />
+            <Limit name="concurrent-instances" max="16"/>
         </MediaCodec>
     </Encoders>
     <Include href="media_codecs_google_video_le.xml" />

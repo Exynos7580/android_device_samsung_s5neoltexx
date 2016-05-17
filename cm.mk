@@ -14,8 +14,8 @@
 # limitations under the License.
 #
 
-# Inherit from a5xeltexx device
-$(call inherit-product, device/samsung/a5xeltexx/device.mk)
+# Inherit from s5neoltexx device
+$(call inherit-product, device/samsung/s5neoltexx/device.mk)
 
 # Inherit common CM phone.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
@@ -27,7 +27,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
 
 # Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := cm_a5xeltexx
-PRODUCT_DEVICE := a5xeltexx
+PRODUCT_NAME := cm_s5neoltexx
+PRODUCT_DEVICE := s5neoltexx
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung

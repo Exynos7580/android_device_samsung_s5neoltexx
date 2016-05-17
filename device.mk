@@ -14,12 +14,12 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/a5xeltexx
+LOCAL_PATH := device/samsung/s5neoltexx
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Overlays
-#DEVICE_PACKAGE_OVERLAYS += device/samsung/a5xeltexx/overlay
+#DEVICE_PACKAGE_OVERLAYS += device/samsung/s5neoltexx/overlay
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
@@ -40,9 +40,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 # GPS
-PRODUCT_PACKAGES += \
-    libdmitry
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml
@@ -84,11 +81,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.nfc.sec_hal=true
 
-
-# SYMBOLS FOR BLOBS
-PRODUCT_PACKAGES += \
-    libsamsung_symbols
-
 # cpboot-daemon for modem
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ril/sbin/cbd:root/sbin/cbd
@@ -97,4 +89,4 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, device/samsung/exynos7580-common/device-common.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/samsung/a5xeltexx/a5xeltexx-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/s5neoltexx/s5neoltexx-vendor.mk)

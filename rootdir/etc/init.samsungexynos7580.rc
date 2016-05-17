@@ -2,26 +2,33 @@ import init.samsungexynos7580.usb.rc
 import init.baseband.rc
 import init.wifi.rc
 import init.fac.rc
-import init.rilcommon.rc
 
 on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on init
-
-    export LD_SHIM_LIBS "/system/lib/libexynoscamera.so|libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.AVC.Encoder.so|libsamsung_symbols.so:/system/bin/gpsd|libdmitry.so"
-
     mkdir /preload 0771 system system
 
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
 
+    #export EXTERNAL_STORAGE /storage/emulated/legacy
+    #export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
+    #export EMULATED_STORAGE_TARGET /storage/emulated
+
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
 
+    #export SECONDARY_STORAGE /storage/extSdCard
+    export EXTERNAL_STORAGE /sdcard
+
     symlink /data/app /factory
     symlink /dev/block/platform/13540000.dwmmc0/by-name/PERSISTENT /dev/block/persistent
+
+#Private Mode
+#    mkdir /mnt/shell/privatemode 0700 system system
+#    mkdir /storage/Private 0000 system system
 
 on post-fs-data
     mkdir /data/media 0770 media_rw media_rw
@@ -48,16 +55,17 @@ on post-fs-data
     chown system audio /sys/class/voice_trigger/dbd2/va_load_amodel
     chmod 0664 /sys/class/voice_trigger/dbd2/va_load_amodel
     mkdir /data/firmware 0770 media system
-    chmod 0660 /dev/i2c-0
-    chown system system /dev/i2c-0
     chown media system /data/firmware
 
-# permission for CHARGING
-    chown system radio /sys/class/power_supply/battery/batt_discharging_check
-    chown system radio /sys/class/power_supply/battery/batt_discharging_check_adc
-    chown system radio /sys/class/power_supply/battery/batt_discharging_ntc
-    chown system radio /sys/class/power_supply/battery/batt_discharging_ntc_adc
-    chown system radio /sys/class/power_supply/battery/batt_self_discharging_control
+# BlowFish service
+#    mkdir /data/tee 0700 system system
+#    start tz_service
+#    setprop sys.blowfish.loaded true
+
+#Private Mode
+#    mkdir /data/privatemode 0770 system system
+#    chown system system /data/privatemode
+#    restorecon /data/privatemode
 
 on boot
     # override init.rc to keep plenty of large order chunks around
@@ -66,7 +74,10 @@ on boot
     # write /proc/sys/vm/min_free_order_shift 1
 
 # SSWAP
-    write /proc/sys/vm/swappiness 190
+    write /proc/sys/vm/swappiness 130
+
+    #mount debugfs /sys/kernel/debug /sys/kernel/debug
+#    setprop ro.radio.noril yes
 
     # Allow to access debugfs
     chmod 755 /sys/kernel/debug
@@ -78,10 +89,6 @@ on boot
     # Change permission for GPU
     chown system system /sys/devices/11400000.mali/power_policy
     chmod 0664 /sys/devices/11400000.mali/power_policy
-
-    # Permissions for S.LSI ESE
-    chmod 0660 /dev/p3
-    chown system system /dev/p3
 
     # Dynamic cluster hotplug
     chown system system /sys/devices/system/cpu/clusterhotplug/force_hstate
@@ -208,6 +215,9 @@ on boot
 # MSP FactoryApp
     mkdir /efs/FactoryApp 0775 system system
 
+# IMEI folder
+	mkdir /efs/imei 0775 radio system
+
     # DRK permission
     mkdir /efs/prov 0770 radio system
     mkdir /efs/prov_data 0770 radio system
@@ -229,7 +239,6 @@ on boot
     # Switch Device
     chown system radio /sys/class/sec/switch/usb_state
     chown system radio /sys/class/sec/switch/chg_type
-    chown system system /sys/class/sec/switch/afc_off
 
 #for datarouter
     chown system system /dev/dun
@@ -243,12 +252,10 @@ on boot
     chown system radio /sys/class/host_notify/usb_otg/booster
     chmod 0660 /sys/class/host_notify/usb_otg/booster
 
-#MST HW Support
-    setprop ro.mst.support 1
-
-#Secure OS migration
-    chown radio system /sys/devices/system/sec_os_ctrl/migrate_os
-    chmod 664 /sys/devices/system/sec_os_ctrl/migrate_os
+#Private Mode
+#    service privatemode /system/bin/sdcard -r /data/privatemode /mnt/shell/privatemode 1000 1000
+#    class late_start
+#    oneshot
 
 # IPSec for VOLTE
     chown root system /dev/socket
@@ -258,31 +265,22 @@ on fs
     mount_all /fstab.samsungexynos7580
     setprop ro.crypto.fuse_sdcard true
 
-# sem_daemon permission
-    chown system system /efs/sec_efs/ssp_data
-    chmod 0644 /efs/sec_efs/ssp_data
-
 # Permissions for ION
     chmod 0660 /sys/class/ion_cma/ion_video_ext/isolated
     chown system system /sys/class/ion_cma/ion_video_ext/isolated
 
 # Permissions for backlight
+    chmod 0660 /sys/class/backlight/panel/brightness
     chown system system /sys/class/backlight/panel/brightness
     chown system system /sys/class/backlight/panel/auto_brightness
-    chown system system /sys/class/backlight/panel/auto_brightness_level
-    chown system media_rw /sys/class/backlight/panel/weakness_hbm_comp
 
 # Permissions for LCD
     chown system radio /sys/class/lcd/panel/manufacture_code
     chown system radio /sys/class/lcd/panel/lcd_type
     chown system system /sys/class/lcd/panel/siop_enable
     chown system system /sys/class/lcd/panel/temperature
+    chown system radio /sys/class/lcd/panel/mcd_mode
     chown system radio /sys/class/lcd/panel/power_reduce
-
-# Permissions for LCD HMT
-    chown system system /sys/class/lcd/panel/hmt_on
-    chown system system /sys/class/lcd/panel/hmt_bright
-    chown system system /sys/class/mdnie/mdnie/hmt_color_temperature
 
 # Permissions for MDNIE
     chown system media_rw /sys/class/mdnie/mdnie/mode
@@ -304,10 +302,6 @@ on fs
     chown system system /persdata/absolute
     chmod 0750 /persdata/absolute
 
-# Permissions for  LSI NFC
-    chmod 0660 /dev/sec-nfc
-    chown nfc nfc /dev/sec-nfc
-
 # Copy DRM Key
     copy /system/app/wv.keys /factory/wv.keys
 
@@ -324,15 +318,11 @@ on fs
     chown system radio /sys/class/sec/sec_touchkey/touch_sensitivity
     chown system radio /sys/class/sec/sec_touchkey/glove_mode
     chown system radio /sys/class/sec/sec_touchkey/flip_mode
-    chown system radio /sys/class/sec/sec_touchkey/sar_enable
-    chown system radio /sys/class/sec/sec_touchkey/sw_reset
-    chown system radio /sys/class/sec/sec_touchkey/touchkey_earjack
     chown system system /sys/class/sec/sec_touchkey/input/enabled
 
 # Permissions for gpio_keys
     chown radio system /sys/class/sec/sec_key/wakeup_keys
     write /sys/class/sec/sec_key/wakeup_keys 116,172
-
 # Fingerprint
     mkdir /dev/validity 0770 system system
 
@@ -345,10 +335,10 @@ on fs
     chown system system /data/system
     mkdir /data/system/gps 0771 system system
     chown system system /data/system/gps
-    rm /data/gps_started
-    rm /data/glonass_started
-    rm /data/smd_started
-    rm /data/sv_cno.info
+    rm /data/system/gps/gps_started
+    rm /data/system/gps/glonass_started
+    rm /data/system/gps/smd_started
+    rm /data/system/gps/sv_cno.info
 
 # MTP permission
     chmod 0660 /dev/usb_mtp_gadget
@@ -364,6 +354,10 @@ on fs
     chown system system /dev/ttyGS1
     chown system system /dev/ttyGS2
     chown system system /dev/ttyGS3
+
+# Permission for flashlight control for HAL3.3
+    chmod 0660 /sys/class/camera/flash/rear_torch_flash
+    chown media system /sys/class/camera/flash/rear_torch_flash
 
 # Permissions Camera
     chown system radio /sys/class/camera/rear/rear_camfw
@@ -392,8 +386,6 @@ on fs
     chown system radio /sys/class/camera/ois/ois_exif
 
 # SENSORS
-# Fingerprint_sensor
-    chown system radio /sys/class/fingerprint/fingerprint/type_check
 # Accelerometer_sensor
     chown system radio /sys/class/sensors/accelerometer_sensor/raw_data
     chown system radio /sys/class/sensors/accelerometer_sensor/calibration
@@ -402,8 +394,6 @@ on fs
     chown system radio /sys/class/sensors/accelerometer_sensor/name
     chown system radio /sys/class/sensors/accelerometer_sensor/selftest
     chown system radio /sys/class/sensors/accelerometer_sensor/lowpassfilter
-    chown system radio /sys/class/sensors/accelerometer_sensor/mcu_rev
-    chown system radio /sys/class/sensors/accelerometer_sensor/mcu_name
 
 # Proximity_sensor
     chown system radio /sys/class/sensors/proximity_sensor/state
@@ -833,67 +823,6 @@ on fs
     chmod 760	/sys/devices/13870000.hsi2c/i2c-0/0-002e/iio:device2/trigger/current_trigger
     chmod 760	/sys/class/sensors/sensor_dev/flush
 
-# BHY
-    chown system radio  /sys/devices/13890000.hsi2c/i2c-2/2-0028/iio:device0/event_shealth_int
-    chown system radio  /sys/devices/13890000.hsi2c/i2c-2/2-0028/iio:device0/pedometer_steps
-    chown system radio  /sys/devices/13890000.hsi2c/i2c-2/2-0028/iio:device0/shealth_cadence
-    chown system radio  /sys/devices/13890000.hsi2c/i2c-2/2-0028/iio:device0/shealth_cadence_enable
-    chown system radio  /sys/devices/13890000.hsi2c/i2c-2/2-0028/iio:device0/shealth_enable
-    chown system radio  /sys/devices/13890000.hsi2c/i2c-2/2-0028/iio:device0/shealth_flush_cadence
-    chmod 660  /sys/devices/13890000.hsi2c/i2c-2/2-0028/iio:device0/event_shealth_int
-    chmod 660  /sys/devices/13890000.hsi2c/i2c-2/2-0028/iio:device0/pedometer_steps
-    chmod 660  /sys/devices/13890000.hsi2c/i2c-2/2-0028/iio:device0/shealth_cadence_enable
-    chmod 660  /sys/devices/13890000.hsi2c/i2c-2/2-0028/iio:device0/shealth_enable
-    chmod 660  /sys/devices/13890000.hsi2c/i2c-2/2-0028/iio:device0/shealth_flush_cadence
-
-    chown system radio  /sys/devices/i2c.24/i2c-6/6-0028/iio:device0/event_shealth_int
-    chown system radio  /sys/devices/i2c.24/i2c-6/6-0028/iio:device0/pedometer_steps
-    chown system radio  /sys/devices/i2c.24/i2c-6/6-0028/iio:device0/shealth_cadence
-    chown system radio  /sys/devices/i2c.24/i2c-6/6-0028/iio:device0/shealth_cadence_enable
-    chown system radio  /sys/devices/i2c.24/i2c-6/6-0028/iio:device0/shealth_enable
-    chown system radio  /sys/devices/i2c.24/i2c-6/6-0028/iio:device0/shealth_flush_cadence
-    chmod 660  /sys/devices/i2c.24/i2c-6/6-0028/iio:device0/event_shealth_int
-    chmod 660  /sys/devices/i2c.24/i2c-6/6-0028/iio:device0/pedometer_steps
-    chmod 660  /sys/devices/i2c.24/i2c-6/6-0028/iio:device0/shealth_cadence_enable
-    chmod 660  /sys/devices/i2c.24/i2c-6/6-0028/iio:device0/shealth_enable
-    chmod 660  /sys/devices/i2c.24/i2c-6/6-0028/iio:device0/shealth_flush_cadence
-
-    chown system radio  /sys/devices/i2c.44/i2c-7/7-0028/iio:device0/event_shealth_int
-    chown system radio  /sys/devices/i2c.44/i2c-7/7-0028/iio:device0/pedometer_steps
-    chown system radio  /sys/devices/i2c.44/i2c-7/7-0028/iio:device0/shealth_cadence
-    chown system radio  /sys/devices/i2c.44/i2c-7/7-0028/iio:device0/shealth_cadence_enable
-    chown system radio  /sys/devices/i2c.44/i2c-7/7-0028/iio:device0/shealth_enable
-    chown system radio  /sys/devices/i2c.44/i2c-7/7-0028/iio:device0/shealth_flush_cadence
-    chmod 660  /sys/devices/i2c.44/i2c-7/7-0028/iio:device0/event_shealth_int
-    chmod 660  /sys/devices/i2c.44/i2c-7/7-0028/iio:device0/pedometer_steps
-    chmod 660  /sys/devices/i2c.44/i2c-7/7-0028/iio:device0/shealth_cadence_enable
-    chmod 660  /sys/devices/i2c.44/i2c-7/7-0028/iio:device0/shealth_enable
-    chmod 660  /sys/devices/i2c.44/i2c-7/7-0028/iio:device0/shealth_flush_cadence
-
-    chown system radio  /sys/devices/i2c.47/i2c-7/7-0028/iio:device0/event_shealth_int
-    chown system radio  /sys/devices/i2c.47/i2c-7/7-0028/iio:device0/pedometer_steps
-    chown system radio  /sys/devices/i2c.47/i2c-7/7-0028/iio:device0/shealth_cadence
-    chown system radio  /sys/devices/i2c.47/i2c-7/7-0028/iio:device0/shealth_cadence_enable
-    chown system radio  /sys/devices/i2c.47/i2c-7/7-0028/iio:device0/shealth_enable
-    chown system radio  /sys/devices/i2c.47/i2c-7/7-0028/iio:device0/shealth_flush_cadence
-    chmod 660  /sys/devices/i2c.47/i2c-7/7-0028/iio:device0/event_shealth_int
-    chmod 660  /sys/devices/i2c.47/i2c-7/7-0028/iio:device0/pedometer_steps
-    chmod 660  /sys/devices/i2c.47/i2c-7/7-0028/iio:device0/shealth_cadence_enable
-    chmod 660  /sys/devices/i2c.47/i2c-7/7-0028/iio:device0/shealth_enable
-    chmod 660  /sys/devices/i2c.47/i2c-7/7-0028/iio:device0/shealth_flush_cadence
-
-    chown system radio  /sys/devices/i2c.21/i2c-6/6-0028/iio:device0/event_shealth_int
-    chown system radio  /sys/devices/i2c.21/i2c-6/6-0028/iio:device0/pedometer_steps
-    chown system radio  /sys/devices/i2c.21/i2c-6/6-0028/iio:device0/shealth_cadence
-    chown system radio  /sys/devices/i2c.21/i2c-6/6-0028/iio:device0/shealth_cadence_enable
-    chown system radio  /sys/devices/i2c.21/i2c-6/6-0028/iio:device0/shealth_enable
-    chown system radio  /sys/devices/i2c.21/i2c-6/6-0028/iio:device0/shealth_flush_cadence
-    chmod 660  /sys/devices/i2c.21/i2c-6/6-0028/iio:device0/event_shealth_int
-    chmod 660  /sys/devices/i2c.21/i2c-6/6-0028/iio:device0/pedometer_steps
-    chmod 660  /sys/devices/i2c.21/i2c-6/6-0028/iio:device0/shealth_cadence_enable
-    chmod 660  /sys/devices/i2c.21/i2c-6/6-0028/iio:device0/shealth_enable
-    chmod 660  /sys/devices/i2c.21/i2c-6/6-0028/iio:device0/shealth_flush_cadence
-
 # IRLED_sensor
     chown system radio /sys/class/sensors/irled_remote/name
     chown system radio /sys/class/sensors/irled_remote/vendor
@@ -929,32 +858,12 @@ service vcsFPService /system/bin/vcsFPService
     user system
     group system
 
-# BIO FRAMEWORK : starts bio auth service
-service bauthserver /system/bin/bauthserver
-    class late_start
-    user system
-    group system
-
 service prepare_param /system/bin/prepare_param.sh /dev/block/platform/13540000.dwmmc0/by-name/PARAM
     class core
     user root
     group root
     seclabel u:r:prepare_param:s0
     oneshot
-
-# sem_daemon
-service sem_daemon /system/bin/sem_daemon
-    class core
-    user system
-    group system nfc
-    disabled
-
-on property:sys.boot_completed=1
-    setprop security.semdaemonfinish 0
-    start sem_daemon
-
-on property:security.semdaemonfinish=1
-    stop sem_daemon
 
 # Blowfish tzdaemon
 service tz_service /system/bin/tzdaemon
@@ -976,6 +885,7 @@ on property:sys.tzdaemon=Ready
 
 on property:init.svc.tz_service=stopped
     setprop sys.tzdaemon NotReady
+
 
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
 service watchdogd /sbin/watchdogd 10 20
@@ -1055,19 +965,12 @@ service cs_service /system/bin/cs
 
 on property:sys.mobicoredaemon.enable=true
     start cs_service
+	write /proc/iccc_ready 1
 
 # SSWAP
-service swapon /sbin/sswap -s -f 1536
+service swapon /sbin/sswap -s
     class core
     user root
     group root
     seclabel u:r:sswap:s0
     oneshot
-
- # SecEDS
-service TvoutService_C /system/bin/bintvoutservice
-     class main
-     user system
-     group graphics
-on property:ro.SecEDS.enable=false
-    stop TvoutService_C
