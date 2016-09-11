@@ -3,11 +3,11 @@ Device Tree For Samsung Galaxy S5 neo
 
 Basic   | Spec Sheet
 -------:|:-------------------------
-CPU     | Qcta 1.5 GHz Cortex-A53
+CPU     | Qcta 1.6 GHz Cortex-A53
 CHIPSET | Samsung Exynos 7580
 GPU     | Mali-T720MP2
 Memory  | 2GB RAM
-Android | 5.1.1
+Android | 5.1.1 (6.0.1)
 Storage | 16 GB
 MicroSD | Up to 128GB
 Battery | 2800 mAh
