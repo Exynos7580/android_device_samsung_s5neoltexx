@@ -7,6 +7,21 @@ on init
     # To sync between sdcard & installd
     setprop installd.sdcard_manipulate_done 0
 
+    # Create cgroup mount points for process groups
+    mkdir /dev/cpuctl
+    mount cgroup none /dev/cpuctl cpu
+    chown system system /dev/cpuctl
+    chmod 0660 /dev/cpuctl
+    chown system system /dev/cpuctl/tasks
+    chmod 0666 /dev/cpuctl/tasks
+    write /dev/cpuctl/cpu.shares 1024
+    write /dev/cpuctl/cpu.rt_runtime_us 1000000
+    write /dev/cpuctl/cpu.rt_period_us 950000
+
+    mkdir /dev/cpuctl/bg_non_interactive
+    chown system system /dev/cpuctl/bg_non_interactive/tasks
+    chmod 0666 /dev/cpuctl/bg_non_interactive/tasks
+
 on post-fs-data
 
     # Latin SSMS feature
