@@ -69,7 +69,7 @@ BOARD_RIL_CLASS := ../../../$(DEVICE_PATH)/ril
 BOARD_MODEM_TYPE := tss310
 
 # inherit from the proprietary version
--include vendor/samsung/j7eltexx/s5neoltexx.mk
+-include vendor/samsung/s5neoltexx/BoardConfigVendor.mk
 
 # twrp
 ifeq ($(WITH_TWRP),true)
