@@ -25,9 +25,6 @@
    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-   File Name : init_sec.c
-   Create Date : 2016.04.13
  */
 
 #include <stdlib.h>
@@ -38,38 +35,41 @@
 #include "log.h"
 #include "util.h"
 
-void make_me_dual()
-{
+void make_me_dual() {
 	property_set("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
 	property_set("persist.radio.multisim.config", "dsds");
 	property_set("ro.multisim.simslotcount", "2");
 }
 
-void vendor_load_properties()
-{
+void vendor_load_properties() {
+	std::string platform = property_get("ro.board.platform");
+	
+	if (platform != ANDROID_TARGET) {
+		return;
+	}
 
-    std::string bootloader = property_get("ro.bootloader");
+	std::string bootloader = property_get("ro.bootloader");
 
-    if (bootloader.find("J700F") == 0) {
-        property_set("ro.build.fingerprint", "samsung/j7eltexx/j7elte:6.0.1/MMB29K/J700FXXU3BPK1:user/release-keys");
-        property_set("ro.build.description", "j7eltexx-user 6.0.1 MMB29K J700FXXU3BPK1 release-keys");
-        property_set("ro.product.model", "SM-J700F");
-        property_set("ro.product.device", "j7elte");
-	make_me_dual();
-    } else if (bootloader.find("J700M") == 0) {
-        property_set("ro.build.fingerprint", "samsung/j7eltexx/j7elte:5.1.1/LMY47X/J700MUBU1APA1:user/release-keys");
-        property_set("ro.build.description", "j7eltexx-user 5.1.1 LMY47X J700MUBU1APA1 release-keys");
-        property_set("ro.product.model", "SM-J700M");
-        property_set("ro.product.device", "j7elte");
-    } else {
-        property_set("ro.build.fingerprint", "samsung/j7e3gxx/j7e3g:5.1.1/LMY48B/J700HXXU2APC5:user/release-keys");
-        property_set("ro.build.description", "j7e3gxx-user 5.1.1 LMY48B J700HXXU2APC5 release-keys");
-        property_set("ro.product.model", "SM-J700H");
-        property_set("ro.product.device", "j7e3g");
-	make_me_dual();
-    }
+	if (bootloader.find("G903F") == 0) {
+		property_set("ro.build.fingerprint", "samsung/s5neoltexx/s5neolte:6.0.1/MMB29K/G903FXXU1BQC1:user/release-keys");
+		property_set("ro.build.description", "s5neoltexx-user 6.0.1 MMB29K G903FXXU1BQC1 release-keys");
+		property_set("ro.product.model", "SM-G903F");
+		property_set("ro.product.device", "s5neolte");
+		make_me_dual();
+	}
+	else if (bootloader.find("G903M") == 0) {
+		property_set("ro.build.fingerprint", "samsung/s5neolteub/s5neolte:6.0.1/MMB29K/G903MUBU1BPD3:user/release-keys");
+		property_set("ro.build.description", "s5neolteub-user 6.0.1 MMB29K G903MUBU1BPD3 release-keys");
+		property_set("ro.product.model", "SM-G903M");
+		property_set("ro.product.device", "s5neolte");
+		property_set("ro.product.name", "s5neolteub");
+		make_me_dual();
+	}
+	else {
+		property_set("ro.product.model", "SM-G903W");
+		property_set("ro.product.device", "s5neolte");
+	}
 
-    std::string device = property_get("ro.product.device");
-    std::string devicename = property_get("ro.product.model");
-    ERROR("Found bootloader id %s setting build properties for %s device\n", bootloader.c_str(), devicename.c_str());
+	std::string device = property_get("ro.product.device");
+	INFO("Found bootloader id %s setting build properties for %s device\n", bootloader.c_str(), device.c_str());
 }

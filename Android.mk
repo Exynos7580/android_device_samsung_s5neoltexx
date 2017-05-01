@@ -17,10 +17,13 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter j7eltexx,$(TARGET_DEVICE)),)
+ifneq ($(filter s5neoltexx,$(TARGET_DEVICE)),)
 
 $(shell mkdir -p out/target/product/$(TARGET_DEVICE)/obj/KERNEL_OBJ/init)
+$(shell mkdir -p out/target/product/$(TARGET_DEVICE)/obj/KERNEL_OBJ/firmware)
+
 $(shell cp $(TARGET_KERNEL_SOURCE)/init/vmm.elf out/target/product/$(TARGET_DEVICE)/obj/KERNEL_OBJ/init/vmm.elf)
+$(shell cp -r $(TARGET_KERNEL_SOURCE)/firmware/* out/target/product/$(TARGET_DEVICE)/obj/KERNEL_OBJ/firmware/)
 
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 

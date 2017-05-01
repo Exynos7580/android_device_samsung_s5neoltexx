@@ -15,12 +15,12 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/j7eltexx
+LOCAL_PATH := device/samsung/s5neoltexx
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Overlays
-DEVICE_PACKAGE_OVERLAYS += device/samsung/j7eltexx/overlay
+DEVICE_PACKAGE_OVERLAYS += device/samsung/s5neoltexx/overlay
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := xlarge
@@ -29,12 +29,12 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 PRODUCT_AAPT_PREBUILT_DPI := hdpi mdpi
 
 # Flat device tree for boot image
-#PRODUCT_PACKAGES += \
-#    dtbhtoolExynos
+PRODUCT_PACKAGES += \
+    dtbhtoolExynos
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 1280
-TARGET_SCREEN_WIDTH := 720
+TARGET_SCREEN_HEIGHT := 1920
+TARGET_SCREEN_WIDTH := 1080
 
 # Audio
 PRODUCT_COPY_FILES += \
@@ -49,6 +49,19 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml
+
+# Permissions
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
+    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
+    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+    frameworks/native/data/etc/android.hardware.sensor.heartrate.xml:system/etc/permissions/android.hardware.sensor.heartrate.xml \
+    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+    frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
+    frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml \
+    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
+    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
+    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
 
 # Key-layout
 PRODUCT_COPY_FILES += \
@@ -110,4 +123,4 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, device/samsung/exynos7580-common/device-common.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/samsung/j7eltexx/j7eltexx-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/s5neoltexx/s5neoltexx-vendor.mk)

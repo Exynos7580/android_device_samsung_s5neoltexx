@@ -17,9 +17,9 @@
 # Inherit from Exynos7580-common
 include device/samsung/exynos7580-common/BoardConfigCommon.mk
 
-TARGET_OTA_ASSERT_DEVICE := j7e3g,j7e3gxx,j7elte,j7eltexx
+TARGET_OTA_ASSERT_DEVICE := s5neo3g,s5neo3gxx,s5neolte,s5neoltexx
 
-DEVICE_PATH := device/samsung/j7eltexx
+DEVICE_PATH := device/samsung/s5neoltexx
 
 # Include path
 TARGET_SPECIFIC_HEADER_PATH += $(DEVICE_PATH)/include
@@ -31,23 +31,28 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/cmhw
 
 # Init
-TARGET_INIT_VENDOR_LIB := libinit_sec
+TARGET_INIT_VENDOR_LIB := init_s5neolte
 TARGET_UNIFIED_DEVICE := true
 
 # Kernel
-TARGET_KERNEL_CONFIG := lineageos_j7elte_defconfig
-TARGET_KERNEL_SOURCE := kernel/samsung/a3xelte
-
-# Extracted with libbootimg
-#BOARD_KERNEL_SEPARATED_DT := true
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --dt $(DEVICE_PATH)/dt.img --board SYSMAGIC000KU
-#TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --board SYSMAGIC000KU
+TARGET_KERNEL_CONFIG := s5neolte_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/s5neoltexx
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-4.9/bin
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
+BOARD_KERNEL_SEPARATED_DT := true
+TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
 
 # Partitions
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 29360128
 BOARD_CACHEIMAGE_PARTITION_SIZE := 104857600
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 35651584
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2206203904
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1887436800
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 13514047488
 BOARD_FLASH_BLOCK_SIZE := 131072
 
@@ -62,4 +67,9 @@ BOARD_RIL_CLASS := ../../../$(DEVICE_PATH)/ril
 BOARD_MODEM_TYPE := tss310
 
 # inherit from the proprietary version
--include vendor/samsung/j7eltexx/BoardConfigVendor.mk
+-include vendor/samsung/j7eltexx/s5neoltexx.mk
+
+# twrp
+ifeq ($(WITH_TWRP),true)
+-include device/samsung/s5neoltexx/twrp.mk
+endif

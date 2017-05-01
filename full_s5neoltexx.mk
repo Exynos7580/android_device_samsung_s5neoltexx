@@ -14,22 +14,22 @@
 
 #
 # This file is the build configuration for a full Android
-# build for j7eltexx hardware. This cleanly combines a set of
+# build for s5neoltexx hardware. This cleanly combines a set of
 # device-specific aspects (drivers) with a device-agnostic
 # product configuration (apps). Except for a few implementation
 # details, it only fundamentally contains two inherit-product
-# lines, full and j7eltexx, hence its name.
+# lines, full and s5neoltexx, hence its name.
 #
 
 PRODUCT_RUNTIMES := runtime_libart_default
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, device/samsung/j7eltexx/device.mk)
+$(call inherit-product, device/samsung/s5neoltexx/device.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := j7eltexx
-PRODUCT_DEVICE := j7elte
+PRODUCT_NAME := s5neoltexx
+PRODUCT_DEVICE := s5neolte
 PRODUCT_BRAND := Samsung
 PRODUCT_MANUFACTURER := samsung
-PRODUCT_MODEL := SM-J700F
+PRODUCT_MODEL := SM-G903F
