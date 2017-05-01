@@ -1,5 +1,5 @@
 ### Bluetooth
-vendor/firmware/bcm43438A1_V0051.0230.hcd
+vendor/firmware/bcm43455_V0109.0146.hcd
 
 ### Camera
 cameradata/datapattern_420sp.yuv
@@ -10,7 +10,7 @@ lib/libexynoscamera.so
 lib/libhwjpeg.so
 lib/libuniplugin.so
 lib/libsensorlistener.so
-vendor/firmware/setfile_3l2.bin
+vendor/firmware/setfile_3p3.bin
 vendor/firmware/setfile_5e3.bin
 
 ### GateKeeper
@@ -28,9 +28,10 @@ vendor/lib/egl/libGLES_mali.so
 ### Media
 # S5P Multi Format Codec
 vendor/firmware/mfc_fw.bin
+
 # Image subsystem
 vendor/firmware/fimc_is_fd.bin
-vendor/firmware/fimc_is_fw2_3l2.bin
+vendor/firmware/fimc_is_fw2_3p3.bin
 
 ### Mobicore
 app/020a0000000000000000000000000000.drbin
@@ -158,6 +159,7 @@ bin/IPSecService
 lib/libsecnativefeature.so
 lib/libsec-ril.so
 lib/libsec-ril-dsds.so
+
 # IMS
 #app/imsservice/imsservice.apk
 #app/ImsSettings/ImsSettings.apk
@@ -174,8 +176,8 @@ vendor/lib/mediadrm/libwvdrmengine.so
 
 ### Wifi
 etc/wifi/bcmdhd_apsta.bin
+etc/wifi/bcmdhd_ibss.bin
 etc/wifi/bcmdhd_mfg.bin
 etc/wifi/bcmdhd_sta.bin
 etc/wifi/nvram_mfg.txt
 etc/wifi/nvram_net.txt
-
