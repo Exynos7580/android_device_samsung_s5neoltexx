@@ -35,7 +35,8 @@ TARGET_INIT_VENDOR_LIB := init_s5neolte
 TARGET_UNIFIED_DEVICE := true
 
 # Kernel
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --board SYSMAGIC000KU
+BOARD_MKBOOTIMG_ARGS := --board SYSMAGIC000KU
+BOARD_KERNEL_CMDLINE := console=ttySAC1
 TARGET_KERNEL_CONFIG := s5neolte_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/s5neoltexx
 TARGET_KERNEL_ARCH := arm64
