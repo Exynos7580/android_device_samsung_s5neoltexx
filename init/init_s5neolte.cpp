@@ -30,44 +30,41 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "vendor_init.h"
 #include "property_service.h"
+#include "vendor_init.h"
 #include "log.h"
 #include "util.h"
 
-void make_me_dual() {
-	property_set("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
-	property_set("persist.radio.multisim.config", "dsds");
-	property_set("ro.multisim.simslotcount", "2");
-}
-
 void vendor_load_properties() {
-	std::string platform = property_get("ro.board.platform");
-	
-	if (platform != ANDROID_TARGET) {
-		return;
-	}
-
 	std::string bootloader = property_get("ro.bootloader");
 
 	if (bootloader.find("G903F") == 0) {
+		/* SM-G903F */
 		property_set("ro.build.fingerprint", "samsung/s5neoltexx/s5neolte:6.0.1/MMB29K/G903FXXU1BQC1:user/release-keys");
 		property_set("ro.build.description", "s5neoltexx-user 6.0.1 MMB29K G903FXXU1BQC1 release-keys");
 		property_set("ro.product.model", "SM-G903F");
 		property_set("ro.product.device", "s5neolte");
-		make_me_dual();
+		property_set("ro.product.name", "s5neoltexx");
 	}
 	else if (bootloader.find("G903M") == 0) {
+		/* SM-G903M */
 		property_set("ro.build.fingerprint", "samsung/s5neolteub/s5neolte:6.0.1/MMB29K/G903MUBU1BPD3:user/release-keys");
 		property_set("ro.build.description", "s5neolteub-user 6.0.1 MMB29K G903MUBU1BPD3 release-keys");
 		property_set("ro.product.model", "SM-G903M");
 		property_set("ro.product.device", "s5neolte");
 		property_set("ro.product.name", "s5neolteub");
-		make_me_dual();
 	}
 	else {
+		/* SM-G903W */
+		property_set("ro.build.fingerprint", "samsung/s5neoltevl/s5neoltecan:6.0.1/MMB29K/G903WVLU1BQA1:user/release-keys");
+		property_set("ro.build.description", "s5neoltevl-user 6.0.1 MMB29K G903WVLU1BQA1 release-keys");
 		property_set("ro.product.model", "SM-G903W");
-		property_set("ro.product.device", "s5neolte");
+		property_set("ro.product.device", "s5neoltecan");
+		property_set("ro.product.name", "s5neoltevl");
+		/* dual sim settings */
+		property_set("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
+		property_set("persist.radio.multisim.config", "dsds");
+		property_set("ro.multisim.simslotcount", "2");
 	}
 
 	std::string device = property_get("ro.product.device");

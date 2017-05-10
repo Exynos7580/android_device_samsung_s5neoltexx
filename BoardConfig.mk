@@ -31,18 +31,14 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/cmhw
 
 # Init
-TARGET_INIT_VENDOR_LIB := init_s5neolte
+TARGET_INIT_VENDOR_LIB := libinit_s5neolte
 TARGET_UNIFIED_DEVICE := true
 
 # Kernel
-BOARD_MKBOOTIMG_ARGS := --board SYSMAGIC000KU
-BOARD_KERNEL_CMDLINE := console=ttySAC1
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --board SYSMAGIC000KU
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive console=tty0 androidboot.console=tty0 androidboot.hardware=samsungexynos7580 fbcon=font:VGA8x8,rotate:1 mem=471M no_console_suspend=1
 TARGET_KERNEL_CONFIG := s5neolte_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/s5neoltexx
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_HEADER_ARCH := arm64
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-4.9/bin
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 BOARD_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
 BOARD_KERNEL_SEPARATED_DT := true
