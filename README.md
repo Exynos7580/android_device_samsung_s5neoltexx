@@ -6,6 +6,7 @@ Copyright (C) 2016-2017 Apavayan Sinha <info@apavayan.com>
 
       http://www.apache.org/licenses/LICENSE-2.0
 
+**Notice:** This is **Work In Progress** so it might not work
 
 Device Tree For Samsung Galaxy S5 neo 
 ===================================== 

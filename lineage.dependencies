@@ -1,14 +1,14 @@
 [
     {
-        "repository": "s5neo/android_device_samsung_exynos7580-common",
+        "repository": "Exynos7580/android_device_samsung_exynos7580-common",
         "target_path": "device/samsung/exynos7580-common"
     },
     {
-        "repository": "s5neo/android_kernel_samsung_s5neoltexx",
+        "repository": "Exynos7580/android_kernel_samsung_s5neoltexx",
         "target_path": "kernel/samsung/s5neoltexx"
     },
     {
-        "repository": "s5neo/android_vendor_samsung_s5neoltexx",
+        "repository": "Exynos7580/android_vendor_samsung_s5neoltexx",
         "target_path": "vendor/samsung/s5neoltexx"
     }
 ]
