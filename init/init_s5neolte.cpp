@@ -45,6 +45,7 @@ void vendor_load_properties() {
 		property_set("ro.product.model", "SM-G903F");
 		property_set("ro.product.device", "s5neolte");
 		property_set("ro.product.name", "s5neoltexx");
+		property_set("ro.multisim.simslotcount", "1");
 	}
 	else if (bootloader.find("G903M") == 0) {
 		/* SM-G903M */
@@ -53,6 +54,7 @@ void vendor_load_properties() {
 		property_set("ro.product.model", "SM-G903M");
 		property_set("ro.product.device", "s5neolte");
 		property_set("ro.product.name", "s5neolteub");
+		property_set("ro.multisim.simslotcount", "1");
 	}
 	else {
 		/* SM-G903W */
@@ -61,9 +63,6 @@ void vendor_load_properties() {
 		property_set("ro.product.model", "SM-G903W");
 		property_set("ro.product.device", "s5neoltecan");
 		property_set("ro.product.name", "s5neoltevl");
-		/* dual sim settings */
-		property_set("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
-		property_set("persist.radio.multisim.config", "dsds");
 		property_set("ro.multisim.simslotcount", "2");
 	}
 
