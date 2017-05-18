@@ -30,3 +30,7 @@ Rear Camera  | 16 MP, f/1.9, 31mm, autofocus, LED flash
 This branch is for building Lineage 14.1 Firmware.
 
 Model Supported : SM-G903F SM-G903M 
+
+TODO:
+-----
+ - Display

@@ -63,6 +63,8 @@ void vendor_load_properties() {
 		property_set("ro.product.model", "SM-G903W");
 		property_set("ro.product.device", "s5neoltecan");
 		property_set("ro.product.name", "s5neoltevl");
+		property_set("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
+		property_set("persist.radio.multisim.config", "dsds");
 		property_set("ro.multisim.simslotcount", "2");
 	}
 
