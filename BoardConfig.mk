@@ -62,6 +62,10 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.samsungexynos7580
 BOARD_RIL_CLASS := ../../../$(DEVICE_PATH)/ril
 BOARD_MODEM_TYPE := tss310
 
+# NFC
+BOARD_NFC_HAL_SUFFIX := universal7580
+BOARD_HAVE_NFC := true
+
 # inherit from the proprietary version
 -include vendor/samsung/s5neoltexx/BoardConfigVendor.mk
 

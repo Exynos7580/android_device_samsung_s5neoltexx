@@ -181,3 +181,8 @@ etc/wifi/bcmdhd_mfg.bin
 etc/wifi/bcmdhd_sta.bin
 etc/wifi/nvram_mfg.txt
 etc/wifi/nvram_net.txt
+
+# NFC
+etc/sec_s3fwrn7_rfreg.bin
+lib/hw/nfc_nci.universal7580.so
+vendor/firmware/sec_s3fwrn7_firmware.bin
