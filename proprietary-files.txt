@@ -13,12 +13,8 @@ lib/libsensorlistener.so
 vendor/firmware/setfile_3p3.bin
 vendor/firmware/setfile_5e3.bin
 
-### GateKeeper
-lib/hw/gatekeeper.exynos7580.so
-
 ### GPS
 bin/gps.cer
-bin/gpsd
 lib/hw/gps.default.so:lib/hw/gps.universal7580.so
 lib/libwrappergps.so
 
@@ -140,39 +136,19 @@ vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_EARPIECE.txt
 vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_SPEAKER.txt
 vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
 vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
-vendor/lib/liblvverx_3.27.02.so
-vendor/lib/liblvvetx_3.27.02.so
-
-### OMX
-lib/omx/libOMX.Exynos.AVC.Decoder.so
-lib/omx/libOMX.Exynos.AVC.Encoder.so
-lib/omx/libOMX.Exynos.MPEG4.Decoder.so
-lib/omx/libOMX.Exynos.MPEG4.Encoder.so
-lib/omx/libOMX.Exynos.VP8.Decoder.so
-lib/omx/libOMX.Exynos.VP8.Encoder.so
-lib/omx/libOMX.Exynos.WMV.Decoder.so
 
 ### RIL
 # opensource rild don't work well for dual sim
 bin/rild
-bin/IPSecService
 lib/libsecnativefeature.so
 lib/libsec-ril.so
 lib/libsec-ril-dsds.so
-
-# IMS
-#app/imsservice/imsservice.apk
-#app/ImsSettings/ImsSettings.apk
-#lib/libims_engine.so
-#lib/libcpve-client.so
-#lib/libapve-client.so
 
 ### Sensors
 lib/hw/sensors.universal7580.so
 
 ### Widevine
 lib/libstagefright_hdcp.so
-vendor/lib/mediadrm/libwvdrmengine.so
 
 ### Wifi
 etc/wifi/bcmdhd_apsta.bin
