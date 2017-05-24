@@ -6,8 +6,6 @@ Copyright (C) 2016-2017 Apavayan Sinha <info@apavayan.com>
 
       http://www.apache.org/licenses/LICENSE-2.0
 
-**Notice:** This is **Work In Progress** so it might not work
-
 Device Tree For Samsung Galaxy S5 neo 
 ===================================== 
 
@@ -29,4 +27,4 @@ Rear Camera  | 16 MP, f/1.9, 31mm, autofocus, LED flash
 
 This branch is for building Lineage 14.1 Firmware.
 
-Model Supported : SM-G903F SM-G903M 
+Model Supported : SM-G903F SM-G903M  SM-G903W
