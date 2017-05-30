@@ -15,6 +15,7 @@ vendor/firmware/setfile_5e3.bin
 
 ### GPS
 bin/gps.cer
+bin/gpsd
 lib/hw/gps.default.so:lib/hw/gps.universal7580.so
 lib/libwrappergps.so
 

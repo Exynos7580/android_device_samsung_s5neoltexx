@@ -28,10 +28,6 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 # A list of dpis to select prebuilt apk, in precedence order.
 PRODUCT_AAPT_PREBUILT_DPI := hdpi mdpi
 
-# Flat device tree for boot image
-PRODUCT_PACKAGES += \
-    dtbhtoolExynos
-
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
@@ -82,6 +78,10 @@ PRODUCT_COPY_FILES += \
 # Power
 PRODUCT_PACKAGES += \
     power.universal7580
+
+# Shims
+PRODUCT_PACKAGES += \
+    libshim_gpsd
 
 # Ramdisk
 PRODUCT_PACKAGES += \
