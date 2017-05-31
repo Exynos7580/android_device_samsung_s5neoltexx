@@ -27,6 +27,12 @@ TARGET_SPECIFIC_HEADER_PATH += $(DEVICE_PATH)/include
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
+# Charger
+BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
+CHARGING_ENABLED_PATH := /sys/class/power_supply/battery/batt_lp_charging
+
 # Hardware
 BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/cmhw
 
@@ -40,6 +46,16 @@ BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive console=tty0 androidboot.
 TARGET_KERNEL_CONFIG := lineageos_s5neoltexx_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/a3xelte
 BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
+
+# LED
+RED_LED_PATH := "/sys/class/leds/led_r/brightness"
+GREEN_LED_PATH := "/sys/class/leds/led_g/brightness"
+BLUE_LED_PATH := "/sys/class/leds/led_b/brightness"
+BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
+
+# NFC
+BOARD_NFC_HAL_SUFFIX := universal7580
+BOARD_HAVE_NFC := true
 
 # Partitions
 BOARD_HAS_NO_MISC_PARTITION:= false
@@ -60,10 +76,6 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.samsungexynos7580
 # Radio
 BOARD_RIL_CLASS := ../../../$(DEVICE_PATH)/ril
 BOARD_MODEM_TYPE := tss310
-
-# NFC
-BOARD_NFC_HAL_SUFFIX := universal7580
-BOARD_HAVE_NFC := true
 
 # inherit from the proprietary version
 -include vendor/samsung/s5neoltexx/BoardConfigVendor.mk
