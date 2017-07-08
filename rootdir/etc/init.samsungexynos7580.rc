@@ -5,10 +5,10 @@ import init.samsung.rc
 import init.power.rc
 
 on early-init
+    export LD_SHIM_LIBS "/system/bin/gpsd|libshim_gpsd.so"
     mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
 
 on init
-    export LD_SHIM_LIBS "/system/bin/gpsd|libshim_gpsd.so"
     mkdir /preload 0771 system system
 
     # See storage config details at http://source.android.com/tech/storage/
@@ -224,6 +224,15 @@ on boot
     chown system radio /sys/class/sec/switch/otg_test
     chown system radio /sys/class/host_notify/usb_otg/booster
     chmod 0660 /sys/class/host_notify/usb_otg/booster
+
+#   Assign TCP buffer thresholds to be ceiling value of technology maximums
+#   Increased technology maximums should be reflected here.
+    write /proc/sys/net/core/rmem_max  8388608
+    write /proc/sys/net/core/wmem_max  8388608
+
+ # tdmb
+    chown system system /dev/tdmb
+    chmod 0660 /dev/tdmb
 
 # IPSec for VOLTE
     chown root system /dev/socket

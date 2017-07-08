@@ -481,6 +481,7 @@ service ril-daemon /system/bin/rild
     socket rild-debug stream 660 radio system
     socket rild-cas stream 660  casdrm mmb
     user root
+    seclabel u:r:init:s0
     group radio cache inet misc audio sdcard_r sdcard_rw log vpn system
     onrestart restart cpboot-daemon
 
@@ -490,6 +491,7 @@ service ril-daemon1 /system/bin/rild -c 2
     socket rild-debug2 stream 660 radio system
     user root
     group radio cache inet misc audio sdcard_r sdcard_rw log
+    seclabel u:r:init:s0
     disabled
     onrestart restart cpboot-daemon
 
