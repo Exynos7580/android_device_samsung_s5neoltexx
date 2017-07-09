@@ -931,3 +931,9 @@ on property:sys.mobicoredaemon.enable=true
     start cs_service
     write /proc/iccc_ready 1
 
+service sswap /sbin/sswap -s
+      class core
+      user root
+      group root
+      oneshot
+      seclabel u:r:sswap:s0
