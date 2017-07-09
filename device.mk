@@ -115,6 +115,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ril/sbin/cbd:root/sbin/cbd
 
+# samsung's sswap
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/sswap:root/sbin/sswap
+
 # NFC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/libnfc-sec-hal.conf:system/etc/libnfc-sec-hal.conf \
