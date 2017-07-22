@@ -36,6 +36,20 @@
 #include "log.h"
 #include "util.h"
 
+#define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
+#include <sys/_system_properties.h>
+
+void property_override(char const prop[], char const value[])
+{
+    prop_info *pi;
+
+    pi = (prop_info*) __system_property_find(prop);
+    if (pi)
+        __system_property_update(pi, value, strlen(value));
+    else
+        __system_property_add(prop, strlen(prop), value, strlen(value));
+}
+
 void set_sim_info () {
 	FILE *file;
 	char *simslot_count_path = "/proc/simslot_count";
@@ -45,10 +59,10 @@ void set_sim_info () {
 	
 	if (file != NULL) {
 		simslot_count[0] = fgetc(file);
-		property_set("ro.multisim.simslotcount", simslot_count);
+		property_override("ro.multisim.simslotcount", simslot_count);
 		if(strcmp(simslot_count, "2") == 0) {
-			property_set("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
-			property_set("persist.radio.multisim.config", "dsds");
+			property_override("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
+			property_override("persist.radio.multisim.config", "dsds");
 		}
 		fclose(file);
 	}
@@ -62,27 +76,27 @@ void vendor_load_properties() {
 
 	if (bootloader.find("G903F") != std::string::npos) {
 		/* SM-G903F */
-		property_set("ro.build.fingerprint", "samsung/s5neoltexx/s5neolte:6.0.1/MMB29K/G903FXXU1BQC1:user/release-keys");
-		property_set("ro.build.description", "s5neoltexx-user 6.0.1 MMB29K G903FXXU1BQC1 release-keys");
-		property_set("ro.product.model", "SM-G903F");
-		property_set("ro.product.device", "s5neolte");
-		property_set("ro.product.name", "s5neoltexx");
+		property_override("ro.build.fingerprint", "samsung/s5neoltexx/s5neolte:6.0.1/MMB29K/G903FXXU1BQC1:user/release-keys");
+		property_override("ro.build.description", "s5neoltexx-user 6.0.1 MMB29K G903FXXU1BQC1 release-keys");
+		property_override("ro.product.model", "SM-G903F");
+		property_override("ro.product.device", "s5neolte");
+		property_override("ro.product.name", "s5neoltexx");
 	}
 	else if (bootloader.find("G903M") != std::string::npos) {
 		/* SM-G903M */
-		property_set("ro.build.fingerprint", "samsung/s5neolteub/s5neolte:6.0.1/MMB29K/G903MUBU1BPD3:user/release-keys");
-		property_set("ro.build.description", "s5neolteub-user 6.0.1 MMB29K G903MUBU1BPD3 release-keys");
-		property_set("ro.product.model", "SM-G903M");
-		property_set("ro.product.device", "s5neolte");
-		property_set("ro.product.name", "s5neolteub");
+		property_override("ro.build.fingerprint", "samsung/s5neolteub/s5neolte:6.0.1/MMB29K/G903MUBU1BPD3:user/release-keys");
+		property_override("ro.build.description", "s5neolteub-user 6.0.1 MMB29K G903MUBU1BPD3 release-keys");
+		property_override("ro.product.model", "SM-G903M");
+		property_override("ro.product.device", "s5neolte");
+		property_override("ro.product.name", "s5neolteub");
 	}
 	else {
 		/* SM-G903W */
-		property_set("ro.build.fingerprint", "samsung/s5neoltevl/s5neoltecan:6.0.1/MMB29K/G903WVLU1BQA1:user/release-keys");
-		property_set("ro.build.description", "s5neoltevl-user 6.0.1 MMB29K G903WVLU1BQA1 release-keys");
-		property_set("ro.product.model", "SM-G903W");
-		property_set("ro.product.device", "s5neoltecan");
-		property_set("ro.product.name", "s5neoltevl");
+		property_override("ro.build.fingerprint", "samsung/s5neoltevl/s5neoltecan:6.0.1/MMB29K/G903WVLU1BQA1:user/release-keys");
+		property_override("ro.build.description", "s5neoltevl-user 6.0.1 MMB29K G903WVLU1BQA1 release-keys");
+		property_override("ro.product.model", "SM-G903W");
+		property_override("ro.product.device", "s5neoltecan");
+		property_override("ro.product.name", "s5neoltevl");
 	}
 	
 	set_sim_info();

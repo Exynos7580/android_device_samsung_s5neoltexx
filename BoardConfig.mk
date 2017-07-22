@@ -41,7 +41,6 @@ BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/cmhw
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_s5neolte
-TARGET_UNIFIED_DEVICE := true
 
 # Kernel
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --dt $(DEVICE_PATH)/dt.img --board SYSMAGIC000KU
