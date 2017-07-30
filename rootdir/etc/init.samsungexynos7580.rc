@@ -5,10 +5,10 @@ import init.samsung.rc
 import init.power.rc
 
 on early-init
-    export LD_SHIM_LIBS "/system/bin/gpsd|libshim_gpsd.so"
     mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
 
 on init
+    export LD_SHIM_LIBS "/system/bin/gpsd|libshim_gpsd.so"
     mkdir /preload 0771 system system
 
     # See storage config details at http://source.android.com/tech/storage/
