@@ -61,8 +61,8 @@ void set_sim_info () {
 		simslot_count[0] = fgetc(file);
 		property_override("ro.multisim.simslotcount", simslot_count);
 		if(strcmp(simslot_count, "2") == 0) {
-			property_override("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
-			property_override("persist.radio.multisim.config", "dsds");
+			property_set("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
+			property_set("persist.radio.multisim.config", "dsds");
 		}
 		fclose(file);
 	}
