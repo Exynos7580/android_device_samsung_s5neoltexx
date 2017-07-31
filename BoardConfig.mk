@@ -24,9 +24,6 @@ DEVICE_PATH := device/samsung/s5neoltexx
 # Include path
 TARGET_SPECIFIC_HEADER_PATH += $(DEVICE_PATH)/include
 
-# Audio HAL variant
-TARGET_AUDIOHAL_VARIANT := samsung
-
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
