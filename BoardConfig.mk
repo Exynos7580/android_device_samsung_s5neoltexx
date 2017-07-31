@@ -30,12 +30,6 @@ TARGET_AUDIOHAL_VARIANT := samsung
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
-# Charger
-BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
-BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CHARGER_SHOW_PERCENTAGE := true
-CHARGING_ENABLED_PATH := /sys/class/power_supply/battery/batt_lp_charging
-
 # Hardware
 BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/cmhw
 
@@ -45,19 +39,9 @@ TARGET_INIT_VENDOR_LIB := libinit_s5neolte
 # Kernel
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --dt $(DEVICE_PATH)/dt.img --board SYSMAGIC000KU
 BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive console=tty0 androidboot.console=tty0 androidboot.hardware=samsungexynos7580 fbcon=font:VGA8x8,rotate:1 mem=471M no_console_suspend=1
-TARGET_KERNEL_CONFIG := lineageos_s5neoltexx_defconfig
-TARGET_KERNEL_SOURCE := kernel/samsung/a3xelte
+TARGET_KERNEL_CONFIG := lineageos_s5neolte_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/exynos7580-common
 BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
-
-# LED
-RED_LED_PATH := "/sys/class/leds/led_r/brightness"
-GREEN_LED_PATH := "/sys/class/leds/led_g/brightness"
-BLUE_LED_PATH := "/sys/class/leds/led_b/brightness"
-BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
-
-# NFC
-BOARD_NFC_HAL_SUFFIX := universal7580
-BOARD_HAVE_NFC := true
 
 # Partitions
 BOARD_HAS_NO_MISC_PARTITION:= false
