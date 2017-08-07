@@ -72,7 +72,7 @@ on boot
     chmod 0660 /sys/devices/system/cpu/clusterhotplug/max_lock
     
     # Change permission for nr_possible_cores
-    chown system system /sys/module/lazyplug/parameters/nr_possible_cores
+    chown root system /sys/module/lazyplug/parameters/nr_possible_cores
     chmod 0664 /sys/module/lazyplug/parameters/nr_possible_cores
 
     # C-STATE
