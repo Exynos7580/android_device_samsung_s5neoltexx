@@ -70,6 +70,10 @@ on boot
     chmod 0660 /sys/devices/system/cpu/clusterhotplug/min_lock
     chown system system /sys/devices/system/cpu/clusterhotplug/max_lock
     chmod 0660 /sys/devices/system/cpu/clusterhotplug/max_lock
+    
+    # Change permission for nr_possible_cores
+    chown system system /sys/module/lazyplug/parameters/nr_possible_cores
+    chmod 0444 /sys/module/lazyplug/parameters/nr_possible_cores
 
     # C-STATE
     chown system system /sys/module/cpuidle/parameters/off
