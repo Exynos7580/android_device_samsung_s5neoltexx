@@ -73,7 +73,7 @@ on boot
     
     # Change permission for nr_possible_cores
     chown system system /sys/module/lazyplug/parameters/nr_possible_cores
-    chmod 0444 /sys/module/lazyplug/parameters/nr_possible_cores
+    chmod 0664 /sys/module/lazyplug/parameters/nr_possible_cores
 
     # C-STATE
     chown system system /sys/module/cpuidle/parameters/off
