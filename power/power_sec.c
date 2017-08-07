@@ -223,7 +223,7 @@ static void power_set_interactive(struct power_module __unused * module, int on)
 	set_input_device_state(on ? 1 : 0);
 
 	/* Plug out big cores when screen is off */
-	sysfs_write("/sys/power/cpuhotplug/max_online_cpu", on ? "8" : "4");
+	sysfs_write("/sys/module/lazyplug/parameters/nr_possible_cores", on ? "8" : "4");
 
 	/*
 	 * Switch to power-saving profile when screen is off.
