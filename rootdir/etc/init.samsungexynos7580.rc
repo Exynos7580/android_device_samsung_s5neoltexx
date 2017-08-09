@@ -5,7 +5,7 @@ import init.samsung.rc
 import init.power.rc
 
 on early-init
-    mount debugfs /kernel/debug /sys/kernel/debug mode=755
+    mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
 
 on init
     export LD_SHIM_LIBS "/system/bin/gpsd|libshim_gpsd.so"
