@@ -5,7 +5,7 @@ import init.samsung.rc
 import init.power.rc
 
 on early-init
-    mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
+    mount debugfs /kernel/debug /sys/kernel/debug mode=755
 
 on init
     export LD_SHIM_LIBS "/system/bin/gpsd|libshim_gpsd.so"
@@ -62,6 +62,10 @@ on boot
     # Change permission for GPU
     chown system system /sys/devices/11400000.mali/power_policy
     chmod 0664 /sys/devices/11400000.mali/power_policy
+    
+    # Change permission for input8
+    chown system system /sys/class/input/input8/enabled
+    chmod 0664 /sys/class/input/input8/enabled
 
     # Dynamic cluster hotplug
     chown system system /sys/devices/system/cpu/clusterhotplug/force_hstate
