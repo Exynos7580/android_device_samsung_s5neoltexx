@@ -62,8 +62,8 @@ on boot
     # Change permission for GPU
     chown system system /sys/devices/11400000.mali/power_policy
     chmod 0664 /sys/devices/11400000.mali/power_policy
-    
-    # Change permission for input8
+
+    # Change permission for touch key enabled
     chown system system /sys/class/input/input8/enabled
     chmod 0664 /sys/class/input/input8/enabled
 
@@ -74,7 +74,7 @@ on boot
     chmod 0660 /sys/devices/system/cpu/clusterhotplug/min_lock
     chown system system /sys/devices/system/cpu/clusterhotplug/max_lock
     chmod 0660 /sys/devices/system/cpu/clusterhotplug/max_lock
-    
+
     # Change permission for nr_possible_cores
     chown root system /sys/module/lazyplug/parameters/nr_possible_cores
     chmod 0664 /sys/module/lazyplug/parameters/nr_possible_cores
