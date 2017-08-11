@@ -15,6 +15,9 @@ on init
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
 
+    # CPUSETS permission
+    chmod 0660 /dev/cpuctl
+
     # Support legacy paths
     symlink /sdcard /storage/sdcard0
     symlink /storage/usbdisk /mnt/usbdisk
