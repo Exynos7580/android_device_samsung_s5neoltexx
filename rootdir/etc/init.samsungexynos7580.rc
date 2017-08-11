@@ -23,6 +23,8 @@ on init
 
     symlink /data/app /factory
     symlink /dev/block/platform/13540000.dwmmc0/by-name/PERSISTENT /dev/block/persistent
+	
+	chmod 0660 /dev/cpuctl
 
 on post-fs-data
     mkdir /data/media 0770 media_rw media_rw
