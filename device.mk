@@ -117,7 +117,7 @@ PRODUCT_COPY_FILES += \
 
 # samsung's sswap
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/sswap:root/sbin/sswap
+    $(LOCAL_PATH)/rootdir/sbin/sswap:root/sbin/sswap
 
 # NFC
 PRODUCT_COPY_FILES += \
