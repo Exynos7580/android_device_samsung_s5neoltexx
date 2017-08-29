@@ -10,6 +10,8 @@
 
        LogDirectory="/storage/emulated/0/gps/broadcom/storage"
 
+       WakeLock="geo"
+
        LPmode="false"
        CpColdStart="false"
        CpGuardTimeSec="1"
@@ -18,22 +20,24 @@
        SuplEnable="true"
        SuplUseApn="false"
        SuplTlsCertPath="/system/bin/gps.cer"
-       SuplTlsEnable="false"
        SuplUT1Seconds="20"
        SuplUT2Seconds="20"
        SuplUT3Seconds="20"
-       SuplVersion="1"
        TcpConnectionTimeout="20"
+       SuplLppCapable="false"
 
        LbsEnable="true"
        LbsServer="BCMLS2.glpals.com"
        HttpSyncLto="true"
        LbsCellEnable="false"
        LtoDir="/data/system/gps/"
+       LtoSyncThresholdDays="1"
 
        IgnoreJniTime="true"
        HulaEnable="false"
        AssertEnabled="false"
+       IgnoreFwConfig="false"
+       DisablePglorNmeaCallback="true"
    />
 
   <gll
