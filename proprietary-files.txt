@@ -16,6 +16,7 @@ bin/gps.cer
 bin/gpsd
 lib/hw/gps.default.so:lib/hw/gps.universal7580.so
 lib/libwrappergps.so
+lib/libfloatingfeature.so
 
 ### Graphics
 vendor/lib/egl/libGLES_mali.so
