@@ -1,9 +1,7 @@
 ### Bluetooth
-vendor/firmware/bcm43455_V0109.0146.hcd
+vendor/firmware/bcm43455_V0147_0248.hcd
 
 ### Camera
-cameradata/datapattern_420sp.yuv
-cameradata/datapattern_front_420sp.yuv
 lib/hw/camera.universal7580.so
 lib/libexynosv4l2.so
 lib/libexynoscamera.so
@@ -38,12 +36,12 @@ app/mcRegistry/02010000080300030000000000000000.tlbin
 app/mcRegistry/07010000000000000000000000000000.tlbin
 app/mcRegistry/07060000000000000000000000000000.tlbin
 app/mcRegistry/08130000000000000000000000000000.tlbin
+app/mcRegistry/ffffffff000000000000000000000004.tlbin
+app/mcRegistry/ffffffff000000000000000000000005.tlbin
 app/mcRegistry/ffffffff00000000000000000000000a.tlbin
 app/mcRegistry/ffffffff00000000000000000000000c.tlbin
 app/mcRegistry/ffffffff00000000000000000000000d.tlbin
 app/mcRegistry/ffffffff00000000000000000000000f.tlbin
-app/mcRegistry/ffffffff000000000000000000000004.tlbin
-app/mcRegistry/ffffffff000000000000000000000005.tlbin
 app/mcRegistry/ffffffff000000000000000000000012.tlbin
 app/mcRegistry/ffffffff000000000000000000000013.tlbin
 app/mcRegistry/ffffffff000000000000000000000016.tlbin
@@ -51,10 +49,11 @@ app/mcRegistry/ffffffff000000000000000000000017.tlbin
 app/mcRegistry/ffffffff000000000000000000000019.tlbin
 app/mcRegistry/ffffffff000000000000000000000021.tlbin
 app/mcRegistry/ffffffff000000000000000000000041.tlbin
-app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
 app/mcRegistry/ffffffffd00000000000000000000004.tlbin
+app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
 app/mcRegistry/ffffffffd00000000000000000000016.tlbin
-app/mcRegistry/FFFFFFFFD00000000000000000000016.tlbin
+app/mcRegistry/ffffffffd00000000000000000000017.tlbin
+app/mcRegistry/fffffffff0000000000000000000001b.tlbin
 app/mcRegistry/fffffffff0000000000000000000001e.tlbin
 bin/cs
 
@@ -137,22 +136,14 @@ vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_EARPIECE.txt
 vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_SPEAKER.txt
 vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
 vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
-
-### OMX
-lib/omx/libOMX.Exynos.AVC.Decoder.so
-lib/omx/libOMX.Exynos.AVC.Encoder.so
-lib/omx/libOMX.Exynos.MPEG4.Decoder.so
-lib/omx/libOMX.Exynos.MPEG4.Encoder.so
-lib/omx/libOMX.Exynos.VP8.Decoder.so
-lib/omx/libOMX.Exynos.VP8.Encoder.so
-lib/omx/libOMX.Exynos.WMV.Decoder.so
+vendor/lib/libLifevibes_lvverx.so
+vendor/lib/libLifevibes_lvvetx.so
 
 ### RIL
 # opensource rild don't work well for dual sim
 bin/rild
 lib/libsecnativefeature.so
 lib/libsec-ril.so
-lib/libsec-ril-dsds.so
 
 ### Sensors
 lib/hw/sensors.universal7580.so
@@ -166,7 +157,6 @@ lib/libstagefright_hdcp.so
 
 ### Wifi
 etc/wifi/bcmdhd_apsta.bin
-etc/wifi/bcmdhd_ibss.bin
 etc/wifi/bcmdhd_mfg.bin
 etc/wifi/bcmdhd_sta.bin
 etc/wifi/nvram_mfg.txt
