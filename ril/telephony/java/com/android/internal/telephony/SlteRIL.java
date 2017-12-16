@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2014-2016, The CyanogenMod Project. All rights reserved.
  * Copyright (c) 2017, The LineageOS Project. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -10,6 +11,7 @@
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
@@ -20,11 +22,11 @@ import static com.android.internal.telephony.RILConstants.*;
 
 import android.content.Context;
 import android.telephony.Rlog;
+import android.os.AsyncResult;
 import android.os.Message;
 import android.os.Parcel;
 import android.os.SystemProperties;
 import android.telephony.PhoneNumberUtils;
-import android.telephony.SignalStrength;
 import android.telephony.SmsManager;
 import com.android.internal.telephony.uicc.IccCardApplicationStatus;
 import com.android.internal.telephony.uicc.IccCardStatus;
@@ -46,20 +48,31 @@ public class SlteRIL extends RIL {
     static final boolean RILJ_LOGD = true;
     static final boolean RILJ_LOGV = true;
 
+    private static final int SAMSUNG_UNSOL_RESPONSE_BASE = 11000;
     private static final int RIL_REQUEST_DIAL_EMERGENCY_CALL = 10001;
     private static final int RIL_UNSOL_STK_SEND_SMS_RESULT = 11002;
     private static final int RIL_UNSOL_STK_CALL_CONTROL_RESULT = 11003;
 
+    private static final int RIL_UNSOL_DUN_PIN_CONTROL_SIGNAL = 11011;
+    private static final int RIL_UNSOL_SIM_PB_READY = 11021;
+    private static final int RIL_UNSOL_SIM_SWAP_STATE_CHANGED = 11057;
+
+    private static final int RIL_UNSOL_CLOCK_CTRL = 11022;
+    private static final int RIL_REQUEST_DIAL_EMERGENCY = 10016;
+    private static final int RIL_UNSOL_RESPONSE_IMS_NETWORK_STATE_CHANGED = 1036;
     private static final int RIL_UNSOL_DEVICE_READY_NOTI = 11008;
     private static final int RIL_UNSOL_AM = 11010;
-    private static final int RIL_UNSOL_SIM_PB_READY = 11021;
+    private static final int RIL_UNSOL_WB_AMR_STATE = 11017;
+    private static final int RIL_UNSOL_RESPONSE_HANDOVER = 11021;
+    private static final int RIL_UNSOL_ON_SS_SAMSUNG = 1040;
+    private static final int RIL_UNSOL_STK_CC_ALPHA_NOTIFY_SAMSUNG = 1041;
 
-    private static final int RIL_UNSOL_WB_AMR_STATE = 20017;
+
 
     // Number of per-network elements expected in QUERY_AVAILABLE_NETWORKS's response.
     // 4 elements is default, but many RILs actually return 5, making it impossible to
     // divide the response array without prior knowledge of the number of elements.
-    protected int mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 4);
+    protected int mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 6);
 
     public SlteRIL(Context context, int preferredNetworkType, int cdmaSubscription) {
         this(context, preferredNetworkType, cdmaSubscription, null);
@@ -84,51 +97,34 @@ public class SlteRIL extends RIL {
         send(rr);
     }
 
+
+    @Override
+    public void setInitialAttachApn(String apn, String protocol, int authType, String username,
+            String password, Message result) {
+        RILRequest rr = RILRequest.obtain(RIL_REQUEST_SET_INITIAL_ATTACH_APN, result);
+
+        if (RILJ_LOGD) riljLog("Set RIL_REQUEST_SET_INITIAL_ATTACH_APN");
+
+        rr.mParcel.writeString(apn);
+        rr.mParcel.writeString(protocol);
+        rr.mParcel.writeInt(authType);
+        rr.mParcel.writeString(username);
+        rr.mParcel.writeString(password);
+        rr.mParcel.writeString("");
+        rr.mParcel.writeInt(0);
+
+
+        if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest)
+                + ", apn:" + apn + ", protocol:" + protocol + ", authType:" + authType
+                + ", username:" + username + ", password:" + password);
+
+        send(rr);
+    }
+
     @Override
     public void
     acceptCall(Message result) {
         acceptCall(0, result);
-    }
-
-    /**
-     *  Translates EF_SMS status bits to a status value compatible with
-     *  SMS AT commands.  See TS 27.005 3.1.
-     */
-    private int translateStatus(int status) {
-        switch(status & 0x7) {
-            case SmsManager.STATUS_ON_ICC_READ:
-                return 1;
-            case SmsManager.STATUS_ON_ICC_UNREAD:
-                return 0;
-            case SmsManager.STATUS_ON_ICC_SENT:
-                return 3;
-            case SmsManager.STATUS_ON_ICC_UNSENT:
-                return 2;
-        }
-        
-        // Default to READ.
-        return 1;
-    }
-    
-    @Override
-    public void writeSmsToSim(int status, String smsc, String pdu, Message response) {
-        status = translateStatus(status);
-        
-        RILRequest rr = RILRequest.obtain(RIL_REQUEST_WRITE_SMS_TO_SIM,
-                                          response);
-        
-        rr.mParcel.writeInt(status);
-        rr.mParcel.writeString(pdu);
-        rr.mParcel.writeString(smsc);
-        rr.mParcel.writeInt(255);     /* Samsung */
-        
-        if (RILJ_LOGV) {
-            riljLog(rr.serialString() + "> "
-                    + requestToString(rr.mRequest)
-                    + " " + status);
-        }
-        
-        send(rr);
     }
 
     @Override
@@ -219,36 +215,97 @@ public class SlteRIL extends RIL {
 
     @Override
     protected Object
-    responseSignalStrength(Parcel p) {
-        int numInts = 12;
-        int response[];
+    responseCallList(Parcel p) {
+        int num;
+        int voiceSettings;
+        ArrayList<DriverCall> response;
+        DriverCall dc;
 
-        // Get raw data
-        response = new int[numInts];
-        for (int i = 0; i < numInts; i++) {
-            response[i] = p.readInt();
+        num = p.readInt();
+        response = new ArrayList<DriverCall>(num);
+
+        if (RILJ_LOGV) {
+            riljLog("responseCallList: num=" + num +
+                    " mEmergencyCallbackModeRegistrant=" + mEmergencyCallbackModeRegistrant +
+                    " mTestingEmergencyCall=" + mTestingEmergencyCall.get());
         }
-        // gsm
-        response[0] &= 0xff;
-        // cdma
-        response[2] %= 256;
-        response[4] %= 256;
-        // lte
-        response[7] &= 0xff;
+        for (int i = 0 ; i < num ; i++) {
+            dc = new DriverCall();
 
-        return new SignalStrength(response[0],
-                                  response[1],
-                                  response[2],
-                                  response[3],
-                                  response[4],
-                                  response[5],
-                                  response[6],
-                                  response[7],
-                                  response[8],
-                                  response[9],
-                                  response[10],
-                                  response[11],
-                                  true);
+            dc.state = DriverCall.stateFromCLCC(p.readInt());
+            dc.index = p.readInt() & 0xff;
+            dc.TOA = p.readInt();
+            dc.isMpty = (0 != p.readInt());
+            dc.isMT = (0 != p.readInt());
+            dc.als = p.readInt();
+            voiceSettings = p.readInt();
+            dc.isVoice = (0 == voiceSettings) ? false : true;
+
+            int call_type = p.readInt();            // Samsung CallDetails
+            int call_domain = p.readInt();          // Samsung CallDetails
+            String csv = p.readString();            // Samsung CallDetails
+            if (RILJ_LOGV) {
+                riljLog(String.format("Samsung call details: type=%d, domain=%d, csv=%s",
+                               call_type, call_domain, csv));
+            }
+
+            dc.isVoicePrivacy = (0 != p.readInt());
+            dc.number = p.readString();
+            if (RILJ_LOGV) {
+                riljLog("responseCallList dc.number=" + dc.number);
+            }
+            dc.numberPresentation = DriverCall.presentationFromCLIP(p.readInt());
+            dc.name = p.readString();
+            if (RILJ_LOGV) {
+                riljLog("responseCallList dc.name=" + dc.name);
+            }
+            // according to ril.h, namePresentation should be handled as numberPresentation;
+            dc.namePresentation = DriverCall.presentationFromCLIP(p.readInt());
+
+            int uusInfoPresent = p.readInt();
+            if (uusInfoPresent == 1) {
+                dc.uusInfo = new UUSInfo();
+                dc.uusInfo.setType(p.readInt());
+                dc.uusInfo.setDcs(p.readInt());
+                byte[] userData = p.createByteArray();
+                dc.uusInfo.setUserData(userData);
+                riljLogv(String.format("Incoming UUS : type=%d, dcs=%d, length=%d",
+                                dc.uusInfo.getType(), dc.uusInfo.getDcs(),
+                                dc.uusInfo.getUserData().length));
+                riljLogv("Incoming UUS : data (string)="
+                        + new String(dc.uusInfo.getUserData()));
+                riljLogv("Incoming UUS : data (hex): "
+                        + IccUtils.bytesToHexString(dc.uusInfo.getUserData()));
+
+                // Make sure there's a leading + on addresses with a TOA of 145
+                dc.number = PhoneNumberUtils.stringFromStringAndTOA(dc.number, dc.TOA);
+            } else {
+                riljLogv("Incoming UUS : NOT present!");
+            }
+
+            response.add(dc);
+
+            if (dc.isVoicePrivacy) {
+                mVoicePrivacyOnRegistrants.notifyRegistrants();
+                riljLog("InCall VoicePrivacy is enabled");
+            } else {
+                mVoicePrivacyOffRegistrants.notifyRegistrants();
+                riljLog("InCall VoicePrivacy is disabled");
+            }
+        }
+
+        Collections.sort(response);
+
+        if ((num == 0) && mTestingEmergencyCall.getAndSet(false)
+                        && mEmergencyCallbackModeRegistrant != null) {
+            if (mEmergencyCallbackModeRegistrant != null) {
+                riljLog("responseCallList: call ended, testing emergency call," +
+                            " notify ECM Registrants");
+                mEmergencyCallbackModeRegistrant.notifyRegistrant();
+            }
+        }
+
+        return response;
     }
 
     private void constructGsmSendSmsRilRequest(RILRequest rr, String smscPDU, String pdu) {
@@ -264,12 +321,12 @@ public class SlteRIL extends RIL {
     @Override
     public void sendSMSExpectMore(String smscPDU, String pdu, Message result) {
         Rlog.v(RILJ_LOG_TAG, "XMM7260: sendSMSExpectMore");
-        
+
         RILRequest rr = RILRequest.obtain(RIL_REQUEST_SEND_SMS, result);
         constructGsmSendSmsRilRequest(rr, smscPDU, pdu);
-        
+
         if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest));
-        
+
         send(rr);
     }
 
@@ -307,41 +364,37 @@ public class SlteRIL extends RIL {
         return ret;
     }
 
+
     @Override
     protected void
-    processUnsolicited(Parcel p, int type) {
+    processUnsolicited (Parcel p, int type) {
         Object ret;
+        int dataPosition = p.dataPosition(); // save off position within the Parcel
+        int response = p.readInt();
 
-        int dataPosition = p.dataPosition();
-        int origResponse = p.readInt();
-        int newResponse = origResponse;
-
-        /* Remap incorrect respones or ignore them */
-        switch (origResponse) {
-            case 1041: //RIL_UNSOL_DC_RT_INFO_CHANGED
-            case RIL_UNSOL_STK_CALL_CONTROL_RESULT:
-            case RIL_UNSOL_WB_AMR_STATE:
-            case RIL_UNSOL_DEVICE_READY_NOTI: /* Registrant notification */
-            case RIL_UNSOL_SIM_PB_READY: /* Registrant notification */
-                Rlog.v(RILJ_LOG_TAG,
-                       "XMM7260: ignoring unsolicited response " +
-                       origResponse);
-                return;
-        }
-
-        if (newResponse != origResponse) {
-            riljLog("SlteRIL: remap unsolicited response from " +
-                    origResponse + " to " + newResponse);
-            p.setDataPosition(dataPosition);
-            p.writeInt(newResponse);
-        }
-
-        switch (newResponse) {
+        switch(response) {
+            case RIL_UNSOL_RESPONSE_IMS_NETWORK_STATE_CHANGED:
+                ret = responseVoid(p);
+                break;
+            case RIL_UNSOL_DEVICE_READY_NOTI:
+                ret = responseVoid(p);
+                break;
             case RIL_UNSOL_AM:
                 ret = responseString(p);
                 break;
-            case RIL_UNSOL_STK_SEND_SMS_RESULT:
+            case RIL_UNSOL_WB_AMR_STATE:
                 ret = responseInts(p);
+                break;
+            case RIL_UNSOL_RESPONSE_HANDOVER:
+                ret = responseVoid(p);
+                break;
+            case RIL_UNSOL_ON_SS_SAMSUNG:
+                p.setDataPosition(dataPosition);
+                p.writeInt(RIL_UNSOL_ON_SS);
+                break;
+            case RIL_UNSOL_STK_CC_ALPHA_NOTIFY_SAMSUNG:
+                p.setDataPosition(dataPosition);
+                p.writeInt(RIL_UNSOL_STK_CC_ALPHA_NOTIFY);
                 break;
             default:
                 // Rewind the Parcel
@@ -351,13 +404,8 @@ public class SlteRIL extends RIL {
                 super.processUnsolicited(p, type);
                 return;
         }
-
-        switch (newResponse) {
-            case RIL_UNSOL_AM:
-                String strAm = (String)ret;
-                // Add debug to check if this wants to execute any useful am command
-                Rlog.v(RILJ_LOG_TAG, "XMM7260: am=" + strAm);
-                break;
-        }
     }
+
+
+
 }

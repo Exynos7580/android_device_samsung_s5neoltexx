@@ -15,8 +15,11 @@
 # limitations under the License.
 #
 
-# Initialise device config
-$(call inherit-product, device/samsung/s5neoltexx/full_s5neoltexx.mk)
+# Inherit device configuration
+$(call inherit-product, device/samsung/s5neoltexx/device.mk)
+
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 # Inherit common CM phone.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
