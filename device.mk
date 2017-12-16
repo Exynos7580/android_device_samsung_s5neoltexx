@@ -15,18 +15,20 @@
 # limitations under the License.
 #
 
+# Define device-tree path
 LOCAL_PATH := device/samsung/s5neoltexx
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-
-# Overlays
+# Include layers
 DEVICE_PACKAGE_OVERLAYS += device/samsung/s5neoltexx/overlay
 
-# Device uses high-density artwork where available
+# Define screen size for prebuilt apps
 PRODUCT_AAPT_CONFIG := xlarge
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
-# A list of dpis to select prebuilt apk, in precedence order.
 PRODUCT_AAPT_PREBUILT_DPI := hdpi mdpi
+
+# Use dtbhtoolExynos to build dt.img
+PRODUCT_PACKAGES += \
+    dtbhtoolExynos
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
@@ -61,11 +63,11 @@ PRODUCT_COPY_FILES += \
 
 # Key-layout
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/idc/Synaptics_HID_TouchPad.idc:system/usr/idc/Synaptics_HID_TouchPad.idc \
-	$(LOCAL_PATH)/idc/Synaptics_RMI4_TouchPad_Sensor.idc:system/usr/idc/Synaptics_RMI4_TouchPad_Sensor.idc \
-	$(LOCAL_PATH)/keylayout/Button_Jack.kl:system/usr/keylayout/Button_Jack.kl \
-	$(LOCAL_PATH)/keylayout/gpio_keys.kl:system/usr/keylayout/gpio_keys.kl \
-	$(LOCAL_PATH)/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl
+	$(LOCAL_PATH)/configs/idc/Synaptics_HID_TouchPad.idc:system/usr/idc/Synaptics_HID_TouchPad.idc \
+	$(LOCAL_PATH)/configs/idc/Synaptics_RMI4_TouchPad_Sensor.idc:system/usr/idc/Synaptics_RMI4_TouchPad_Sensor.idc \
+	$(LOCAL_PATH)/configs/keylayout/Button_Jack.kl:system/usr/keylayout/Button_Jack.kl \
+	$(LOCAL_PATH)/configs/keylayout/gpio_keys.kl:system/usr/keylayout/gpio_keys.kl \
+	$(LOCAL_PATH)/configs/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -74,10 +76,6 @@ PRODUCT_PACKAGES += \
 # Media profile
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
-
-# Power
-PRODUCT_PACKAGES += \
-    power.exynos5
 
 # Shims
 PRODUCT_PACKAGES += \
@@ -91,53 +89,55 @@ PRODUCT_PACKAGES += \
     init.samsungexynos7580.rc \
     init.samsungexynos7580.usb.rc \
     init.wifi.rc \
-    ueventd.samsungexynos7580.rc
+    ueventd.samsungexynos7580.rc \
+    init.battery.rc
 
-# Wi-fi
+# Wi-Fi
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/cred.conf:system/etc/wifi/cred.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    wifi.interface=wlan0
-    
 # Samsung
 PRODUCT_PACKAGES += \
     SamsungServiceMode
 
-# Ril
+# Samsung's SSWAP
+PRODUCT_COPY_FILES += \
+		$(LOCAL_PATH)/ramdisk/external/sswap:root/sbin/sswap
+
+# RIL
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/radio/apns-conf.xml:system/etc/apns-conf.xml \
+    $(LOCAL_PATH)/configs/radio/cbd:system/bin/cbd \
+    $(LOCAL_PATH)/ramdisk/rild.rc:system/etc/init/rild.rc
+
+# RIL-packages
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
     modemloader
 
-# cpboot-daemon for modem
+# Power
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/ril/sbin/cbd:root/sbin/cbd
+		$(LOCAL_PATH)/ramdisk/external/healthd:root/sbin/healthd
 
-# samsung's sswap
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/sbin/sswap:root/sbin/sswap
+# Power packages
+PRODUCT_PACKAGES += \
+    power.exynos5
 
 # NFC
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/libnfc-sec-hal.conf:system/etc/libnfc-sec-hal.conf \
     $(LOCAL_PATH)/configs/nfc/libnfc-sec.conf:system/etc/libnfc-brcm.conf \
-    $(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml
+    $(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml \
 
+# NFC-Packages
 PRODUCT_PACKAGES += \
+    libnfc-nci \
+    libnfc_nci_jni \
     NfcNci \
     Tag \
     com.android.nfc_extras
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.nfc.sec_hal=true
-
-# twrp
-ifeq ($(WITH_TWRP),true)
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/twrp.fstab:recovery/root/etc/twrp.fstab
-endif
 
 # Inherit from Exynos7580-common
 $(call inherit-product, device/samsung/exynos7580-common/device-common.mk)
