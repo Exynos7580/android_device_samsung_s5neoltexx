@@ -60,6 +60,10 @@ void set_sim_info () {
 	if (file != NULL) {
 		simslot_count[0] = fgetc(file);
 		property_set("ro.multisim.simslotcount", simslot_count);
+		if(strcmp(simslot_count, "2") == 0) {
+			property_set("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
+			property_set("persist.radio.multisim.config", "dsds");
+		}
 		fclose(file);
 	}
 	else {
