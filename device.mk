@@ -126,6 +126,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml
 
 PRODUCT_PACKAGES += \
+    libnfc-nci \
+    libnfc_nci_jni \
     NfcNci \
     Tag \
     com.android.nfc_extras
