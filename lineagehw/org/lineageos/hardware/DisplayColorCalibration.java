@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.cyanogenmod.hardware;
+package org.lineageos.hardware;
 
 import android.os.IBinder;
 import android.os.Parcel;
@@ -23,7 +23,7 @@ import android.os.ServiceManager;
 import android.os.SystemProperties;
 import android.util.Slog;
 
-import org.cyanogenmod.internal.util.FileUtils;
+import org.lineageos.internal.util.FileUtils;
 
 public class DisplayColorCalibration {
 

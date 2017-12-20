@@ -28,51 +28,61 @@
  */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
-
-#include "property_service.h"
-#include "vendor_init.h"
-#include "log.h"
-#include "util.h"
-
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
+#include <android-base/properties.h>
+#include <android-base/logging.h>
+
+#include "property_service.h"
+#include "vendor_init.h"
+
+using android::base::GetProperty;
+using android::init::property_set;
+
 void property_override(char const prop[], char const value[])
 {
-    prop_info *pi;
+	prop_info *pi;
 
-    pi = (prop_info*) __system_property_find(prop);
-    if (pi)
-        __system_property_update(pi, value, strlen(value));
-    else
-        __system_property_add(prop, strlen(prop), value, strlen(value));
+	pi = (prop_info*) __system_property_find(prop);
+	if (pi)
+		__system_property_update(pi, value, strlen(value));
+	else
+		__system_property_add(prop, strlen(prop), value, strlen(value));
 }
 
-void set_sim_info () {
+void set_sim_info ()
+{
 	FILE *file;
 	char *simslot_count_path = "/proc/simslot_count";
 	char simslot_count[2] = "\0";
-	
+
 	file = fopen(simslot_count_path, "r");
-	
+
 	if (file != NULL) {
 		simslot_count[0] = fgetc(file);
-		property_set("ro.multisim.simslotcount", simslot_count);
+		property_override("ro.multisim.simslotcount", simslot_count);
 		if(strcmp(simslot_count, "2") == 0) {
-			property_set("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
-			property_set("persist.radio.multisim.config", "dsds");
+			property_override("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
+			property_override("persist.radio.multisim.config", "dsds");
 		}
 		fclose(file);
 	}
 	else {
-		ERROR("Could not open '%s'\n", simslot_count_path);
+		LOG(ERROR) << "Could not open '" << simslot_count_path << "'\n";
 	}
 }
 
-void vendor_load_properties() {
-	std::string bootloader = property_get("ro.bootloader");
+void vendor_load_properties()
+{
+	std::string platform;
+	std::string bootloader = GetProperty("ro.bootloader", "");
+	std::string device;
+
+	platform = GetProperty("ro.board.platform", "");
+	if (platform != ANDROID_TARGET)
+		return;
 
 	if (bootloader.find("G903F") != std::string::npos) {
 		/* SM-G903F */
@@ -98,9 +108,9 @@ void vendor_load_properties() {
 		property_override("ro.product.device", "s5neoltecan");
 		property_override("ro.product.name", "s5neoltevl");
 	}
-	
+
 	set_sim_info();
 
-	std::string device = property_get("ro.product.device");
-	INFO("Found bootloader id %s setting build properties for %s device\n", bootloader.c_str(), device.c_str());
+	device = GetProperty("ro.product.device", "");
+	LOG(ERROR) << "Found bootloader id '" << bootloader.c_str() << "' setting build properties for '" << device.c_str() << "' device\n";
 }

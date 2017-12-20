@@ -8,7 +8,9 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
 
 on init
-    export LD_SHIM_LIBS "/system/bin/gpsd|libshim_gpsd.so"
+    export LD_SHIM_LIBS "/system/bin/gpsd|/system/vendor/lib/libshim_gpsd.so:/system/lib/libexynoscamera.so|/system/vendor/lib/libcamhelpr.so:/system/lib/libsec-ril.so|/system/lib/libprotobuf-cpp-shim.so:/system/lib/libsec-ril-dsds.so|/system/lib/libprotobuf-cpp-shim.so"
+#	export LD_PRELOAD "libshim_gpsd.so libshim_rild.so"
+	
     mkdir /preload 0771 system system
 
     # See storage config details at http://source.android.com/tech/storage/
@@ -53,6 +55,9 @@ on post-fs-data
     chmod 0664 /sys/class/voice_trigger/dbd2/va_load_amodel
     mkdir /data/firmware 0770 media system
     chown media system /data/firmware
+
+    # Mark wifi driver as unloaded - "ok" indicates loaded
+    setprop wlan.driver.status not_ok
 
 on boot
     # Ensure all CPUs are online (big cluster)
@@ -170,16 +175,16 @@ on boot
 
     chown system log /proc/sec_log
 
-    chown bluetooth net_bt_stack /dev/ttySAC3
+    chown bluetooth bluetooth /dev/ttySAC3
     chmod 0660 /dev/ttySAC3
 # permissions for bluetooth.
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
-    chown bluetooth net_bt_stack ro.bt.bdaddr_path
-    chown radio net_bt_stack /efs/bluetooth/bt_addr
+    chown bluetooth bluetooth ro.bt.bdaddr_path
+    chown radio bluetooth /efs/bluetooth/bt_addr
     chmod 0640 /efs/bluetooth/bt_addr
     chmod 0660 /sys/class/rfkill/rfkill0/state
-    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
-    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
 
     # IR_LED
     chown system radio /sys/class/sec/sec_ir/ir_send
@@ -895,9 +900,10 @@ on property:ro.debug_level=0x4f4c
     start watchdogd
 
 
-service battery_charger /sbin/healthd -c
+service charger /charger
     class charger
-    critical
+	critical
+	group system graphics log
     seclabel u:r:healthd:s0
 
 # LPM
