@@ -55,7 +55,7 @@ void property_override(char const prop[], char const value[])
 void set_sim_info ()
 {
 	FILE *file;
-	char *simslot_count_path = "/proc/simslot_count";
+	const char *simslot_count_path = "/proc/simslot_count";
 	char simslot_count[2] = "\0";
 
 	file = fopen(simslot_count_path, "r");
