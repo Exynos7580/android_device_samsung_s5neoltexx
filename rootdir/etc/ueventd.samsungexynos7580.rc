@@ -65,10 +65,9 @@
 /dev/video9               0660   media      mediadrm
 
 # camera
+/dev/video100             0660   cameraserver      cameraserver
 /dev/video101             0660   cameraserver      cameraserver
 /dev/video102             0660   cameraserver      cameraserver
-/dev/video103             0660   cameraserver      cameraserver
-/dev/video104             0660   cameraserver      cameraserver
 /dev/video109             0660   cameraserver      cameraserver
 /dev/video110             0660   cameraserver      cameraserver
 /dev/video111             0660   cameraserver      cameraserver
@@ -93,8 +92,8 @@
 /dev/video11              0660   media      media
 
 # jpeg
-/dev/video13              0660   media      media
-/dev/video14              0660   media      media
+/dev/video13              0660   cameraserver      media
+/dev/video14              0660   cameraserver      media
 
 # audio
 /dev/seiren               0660   system     audio
