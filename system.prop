@@ -50,12 +50,16 @@ ro.ril.force_eri_from_xml=true
 # Wi-Fi Tethering
 net.tethering.noprovisioning=true
 
-ro.secure=0
-ro.adb.secure=0
-ro.hardware=universal7580
-persist.service.adb.enable=1
-persist.service.debuggable=1
-persist.sys.usb.config=adb
-ro.securestorage.support=false
+# Network
+# Define default initial receive window size in segments.
 net.tcp.default_init_rwnd=60
+
+# sdcardfs
 ro.sys.sdcardfs=true
+
+# Allows healthd to boot directly from charger mode rather than initiating a reboot.
+ro.enable_boot_charger_mode=1
+
+
+# Default OMX service to non-Treble
+persist.media.treble_omx=false
