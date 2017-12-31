@@ -44,9 +44,8 @@ ro.ril.gprsclass=10
 ro.smps.enable=true
 persist.data.netmgrd.qos.enable=false
 ro.use_data_netmgrd=false
-ro.telephony.get_imsi_from_sim=true \
-ro.ril.force_eri_from_xml=true \
-net.tethering.noprovisioning=true 
+ro.telephony.get_imsi_from_sim=true
+ro.ril.force_eri_from_xml=true
 
 # Wi-Fi Tethering
 net.tethering.noprovisioning=true
@@ -59,4 +58,4 @@ persist.service.debuggable=1
 persist.sys.usb.config=adb
 ro.securestorage.support=false
 net.tcp.default_init_rwnd=60
-ro.sys.sdcardfs=false
+ro.sys.sdcardfs=true

@@ -8,7 +8,7 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
 
 on init
-    export LD_SHIM_LIBS "/system/bin/gpsd|/system/vendor/lib/libshim_gpsd.so:/system/lib/libexynoscamera.so|/system/vendor/lib/libcamhelpr.so:/system/lib/libsec-ril.so|/system/lib/libprotobuf-cpp-shim.so:/system/lib/libsec-ril-dsds.so|/system/lib/libprotobuf-cpp-shim.so"
+    export LD_SHIM_LIBS "/system/lib/hw/camera.universal7580.so|/system/lib/libshim_camera.so:/system/lib/libexynoscamera.so|/system/vendor/lib/libexynoscamera_shim.so:/system/lib/libsec-ril.so|/system/lib/libprotobuf-cpp-shim.so:/system/lib/libsec-ril-dsds.so|/system/lib/libprotobuf-cpp-shim.so"
 #	export LD_PRELOAD "libshim_gpsd.so libshim_rild.so"
 	
     mkdir /preload 0771 system system
@@ -54,10 +54,7 @@ on post-fs-data
     chown system audio /sys/class/voice_trigger/dbd2/va_load_amodel
     chmod 0664 /sys/class/voice_trigger/dbd2/va_load_amodel
     mkdir /data/firmware 0770 media system
-    chown media system /data/firmware
-
-    # Mark wifi driver as unloaded - "ok" indicates loaded
-    setprop wlan.driver.status not_ok
+    chown audioserver system /data/firmware
 
 on boot
     # Ensure all CPUs are online (big cluster)
@@ -371,9 +368,9 @@ on fs
 
 # Permission for flashlight control for HAL3.3
     chmod 0660 /sys/class/camera/flash/rear_torch_flash
-    chown media system /sys/class/camera/flash/rear_torch_flash
+    chown cameraserver system /sys/class/camera/flash/rear_torch_flash
     chmod 0660 /sys/class/camera/flash/front_torch_flash
-    chown media system /sys/class/camera/flash/front_torch_flash
+    chown cameraserver system /sys/class/camera/flash/front_torch_flash
 
 # Permissions Camera
     chown system radio /sys/class/camera/rear/rear_camfw
@@ -863,11 +860,11 @@ service ipsec-daemon /system/bin/IPSecService
     group system net_raw inet net_admin
 
 # GPS
-service gpsd /system/bin/gpsd -c /system/etc/gps.xml
-    class main
-    user gps
-    group system wakelock inet net_raw
-    ioprio be 0
+#service gpsd /system/bin/gpsd -c /system/etc/gps.xml
+#    class main
+#    user gps
+#    group system wakelock inet net_raw
+#    ioprio be 0
 
 service taa_service /system/bin/taadaemon
     class core

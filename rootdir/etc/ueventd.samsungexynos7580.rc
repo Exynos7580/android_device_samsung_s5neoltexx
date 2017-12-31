@@ -65,26 +65,27 @@
 /dev/video9               0660   media      mediadrm
 
 # camera
-/dev/video100             0660   media      media
-/dev/video101             0660   media      media
-/dev/video102             0660   media      media
-/dev/video109             0660   media      media
-/dev/video110             0660   media      media
-/dev/video111             0660   media      media
-/dev/video112             0660   media      media
-/dev/video120             0660   media      media
-/dev/video121             0660   media      media
-/dev/video122             0660   media      media
-/dev/video130             0660   media      media
-/dev/video131             0660   media      media
-/dev/video132             0660   media      media
-/dev/video140             0660   media      media
-/dev/video141             0660   media      media
-/dev/video142             0660   media      media
-/dev/video150             0660   media      media
-/dev/video151             0660   media      media
-/dev/video152             0660   media      media
-/dev/video160             0660   media      media
+/dev/video101             0660   cameraserver      cameraserver
+/dev/video102             0660   cameraserver      cameraserver
+/dev/video103             0660   cameraserver      cameraserver
+/dev/video104             0660   cameraserver      cameraserver
+/dev/video109             0660   cameraserver      cameraserver
+/dev/video110             0660   cameraserver      cameraserver
+/dev/video111             0660   cameraserver      cameraserver
+/dev/video112             0660   cameraserver      cameraserver
+/dev/video120             0660   cameraserver      cameraserver
+/dev/video121             0660   cameraserver      cameraserver
+/dev/video122             0660   cameraserver      cameraserver
+/dev/video130             0660   cameraserver      cameraserver
+/dev/video131             0660   cameraserver      cameraserver
+/dev/video132             0660   cameraserver      cameraserver
+/dev/video140             0660   cameraserver      cameraserver
+/dev/video141             0660   cameraserver      cameraserver
+/dev/video142             0660   cameraserver      cameraserver
+/dev/video150             0660   cameraserver      cameraserver
+/dev/video151             0660   cameraserver      cameraserver
+/dev/video152             0660   cameraserver      cameraserver
+/dev/video160             0660   cameraserver      cameraserver
 /dev/media2               0660   media      media
 
 # hevc

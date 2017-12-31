@@ -43,11 +43,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # sdcardfs
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.sys.sdcardfs=false
+	ro.sys.sdcardfs=true
 
 # Allows healthd to boot directly from charger mode rather than initiating a reboot.
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.enable_boot_charger_mode=1
+
+# Default OMX service to non-Treble
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.media.treble_omx=false
 
 # Radio Properties
 PRODUCT_PROPERTY_OVERRIDES += \

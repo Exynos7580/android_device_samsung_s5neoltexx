@@ -1,3 +1,5 @@
 # Shims
 PRODUCT_PACKAGES += \
-    libshim_gpsd
+    libshim_gpsd \
+    libexynoscamera_shim \
+    libshim_camera
