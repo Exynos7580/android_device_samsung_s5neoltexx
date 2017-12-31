@@ -1,4 +1,5 @@
 Copyright (C) 2016-2017 Apavayan Sinha <info@apavayan.com>
+Copyright (C) 2017-2018 Jan Altensen <info@strited.net>
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,6 +26,6 @@ Rear Camera  | 16 MP, f/1.9, 31mm, autofocus, LED flash
 
 ![Galaxy S5 neo](http://cdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s5-neo-1.jpg "Galaxy S5 neo")
 
-This branch is for building Lineage 14.1 Firmware.
+This branch is for building LineageOS 15.1
 
 Model Supported : SM-G903F SM-G903M  SM-G903W
