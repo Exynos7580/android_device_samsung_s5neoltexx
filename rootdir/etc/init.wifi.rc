@@ -70,7 +70,7 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant -iwlan0 -Dnl80211 -c/data/m
     disabled
     oneshot
 
-service macloader /system/bin/macloader
+service macloader /vendor/bin/macloader
     class main
     oneshot
 
