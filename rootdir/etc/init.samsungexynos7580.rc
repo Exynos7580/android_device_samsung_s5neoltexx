@@ -859,11 +859,11 @@ service ipsec-daemon /system/bin/IPSecService
     group system net_raw inet net_admin
 
 # GPS
-#service gpsd /system/bin/gpsd -c /system/etc/gps.xml
-#    class main
-#    user gps
-#    group system wakelock inet net_raw
-#    ioprio be 0
+service gpsd /system/bin/gpsd -c /system/etc/gps.xml
+    class main
+    user gps
+    group system wakelock inet net_raw
+    ioprio be 0
 
 service taa_service /system/bin/taadaemon
     class core
