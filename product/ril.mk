@@ -1,8 +1,12 @@
 # Ril
 PRODUCT_PACKAGES += \
-    libprotobuf-cpp-full \
-    modemloader \
-	libsec-ril-wrapper
+	libprotobuf-cpp-full \
+	libsecril-client \
+	modemloader \
+	rild \
+	libreference-ril \
+	libsecril-client-sap \
+	libril
 
 # cpboot-daemon for modem
 PRODUCT_COPY_FILES += \
