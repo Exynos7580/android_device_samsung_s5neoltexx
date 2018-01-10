@@ -14,5 +14,9 @@
     {
         "repository": "Exynos7580/android_vendor_samsung_exynos7580-common",
         "target_path": "vendor/samsung/exynos7580-common"
+    },
+    {
+        "repository": "Exynos7580/android_external_protobuf-compat-2.6",
+        "target_path": "external/protobuf-compat-2.6"
     }
 ]
