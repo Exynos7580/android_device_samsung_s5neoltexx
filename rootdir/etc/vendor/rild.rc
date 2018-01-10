@@ -1,14 +1,3 @@
-#
-# Copyright (C) 2017 Victor Lourme <contact@zeroside.co>
-#
-# Radio Interface Layer
-# Ramdisk Init
-#
-
-# Dual-SIM Support
-import /vendor/etc/init/rild-dsds.rc
-
-# Radio daemon for SIM 1
 service ril-daemon /vendor/bin/hw/rild -c 1 -l /system/lib/libsec-ril.so
     class main
     socket rild stream 660 system radio
@@ -22,3 +11,6 @@ service ril-daemon /vendor/bin/hw/rild -c 1 -l /system/lib/libsec-ril.so
 on property:persist.sys.cpboot=disable
     stop ril-daemon
     stop cpboot-daemon
+
+on property:ro.radio.noril=1
+    stop ril-daemon
