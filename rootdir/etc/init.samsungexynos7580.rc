@@ -12,6 +12,9 @@ on init
 	
     mkdir /preload 0771 system system
 
+    # RIL <-> audioserver comm
+    chmod 0644 /proc/cmdline
+
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
