@@ -85,10 +85,3 @@ on property:init.svc.macloader=stopped
 #    class main
 #    disabled
 #    oneshot
-
-service hostapd /vendor/bin/hostapd -dddd /data/hostapd/hostapd.conf
-    class late_start
-    user root
-    group root
-    oneshot
-    disabled

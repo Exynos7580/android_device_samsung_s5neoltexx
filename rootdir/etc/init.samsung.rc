@@ -452,12 +452,6 @@ on boot
 
     copy /system/etc/battery_charging_temp.data /sys/class/power_supply/battery/batt_temp_table
 
-service scs /system/bin/scs
-    class main
-    user system
-    group system
-    oneshot
-
 # MobiCore startup
 service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
     class core
@@ -465,8 +459,3 @@ service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF0000000000000
     group system
     oneshot
 
-# Sensorhub service
-service sensorhubservice /system/bin/sensorhubservice
-    class main
-    user system
-    group input
