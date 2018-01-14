@@ -8,7 +8,7 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
 
 on init
-    export LD_SHIM_LIBS "/system/bin/gpsd|/system/vendor/lib/libshim_gpsd.so:/system/lib/hw/camera.universal7580.so|/system/lib/libshim_camera.so:/system/lib/libexynoscamera.so|/system/vendor/lib/libexynoscamera_shim.so"
+    export LD_SHIM_LIBS "/system/bin/gpsd|/vendor/lib/libshim_gpsd.so:/system/lib/hw/camera.universal7580.so|/vendor/lib/libshim_camera.so:/system/lib/libexynoscamera.so|/vendor/lib/libexynoscamera_shim.so"
 	
     mkdir /preload 0771 system system
 
