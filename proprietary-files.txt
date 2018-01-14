@@ -2,25 +2,25 @@
 vendor/firmware/bcm43455_V0109.0146.hcd
 
 ### Camera
-cameradata/datapattern_420sp.yuv
-cameradata/datapattern_front_420sp.yuv
-lib/hw/camera.universal7580.so
-lib/libexynosv4l2.so
-lib/libexynoscamera.so
-lib/libhwjpeg.so
-lib/libuniplugin.so
-lib/libsensorlistener.so
+cameradata/datapattern_420sp.yuv:vendor/cameradata/datapattern_420sp.yuv
+cameradata/datapattern_front_420sp.yuv:vendor/cameradata/datapattern_front_420sp.yuv
+lib/hw/camera.universal7580.so:vendor/lib/hw/camera.universal7580.so
+lib/libexynosv4l2.so:vendor/lib/libexynosv4l2.so
+lib/libexynoscamera.so:vendor/lib/libexynoscamera.so
+lib/libhwjpeg.so:vendor/lib/libhwjpeg.so
+lib/libuniplugin.so:vendor/lib/libuniplugin.so
+lib/libsensorlistener.so:vendor/lib/libsensorlistener.so
 vendor/firmware/setfile_3p3.bin
 vendor/firmware/setfile_5e3.bin
 
 # Gralloc
-lib/hw/gralloc.exynos5.so
+lib/hw/gralloc.exynos5.so:vendor/lib/hw/gralloc.exynos5.so
 
 ### GPS
-bin/gps.cer
-bin/gpsd
+bin/gps.cer:vendor/bin/gps.cer
+bin/gpsd:vendor/bin/gpsd
 lib/hw/gps.default.so:lib/hw/gps.universal7580.so
-lib/libwrappergps.so
+lib/libwrappergps.so:vendor/lib/libwrappergps.so
 
 ### Graphics
 vendor/lib/egl/libGLES_mali.so
@@ -34,32 +34,32 @@ vendor/firmware/fimc_is_fd.bin
 vendor/firmware/fimc_is_fw2_3p3.bin
 
 ### Mobicore
-app/020a0000000000000000000000000000.drbin
-app/FFFFFFFF000000000000000000000001.drbin
-app/mcRegistry/00060308060501020000000000000000.tlbin
-app/mcRegistry/02010000080300030000000000000000.tlbin
-app/mcRegistry/07010000000000000000000000000000.tlbin
-app/mcRegistry/07060000000000000000000000000000.tlbin
-app/mcRegistry/08130000000000000000000000000000.tlbin
-app/mcRegistry/ffffffff00000000000000000000000a.tlbin
-app/mcRegistry/ffffffff00000000000000000000000c.tlbin
-app/mcRegistry/ffffffff00000000000000000000000d.tlbin
-app/mcRegistry/ffffffff00000000000000000000000f.tlbin
-app/mcRegistry/ffffffff000000000000000000000004.tlbin
-app/mcRegistry/ffffffff000000000000000000000005.tlbin
-app/mcRegistry/ffffffff000000000000000000000012.tlbin
-app/mcRegistry/ffffffff000000000000000000000013.tlbin
-app/mcRegistry/ffffffff000000000000000000000016.tlbin
-app/mcRegistry/ffffffff000000000000000000000017.tlbin
-app/mcRegistry/ffffffff000000000000000000000019.tlbin
-app/mcRegistry/ffffffff000000000000000000000021.tlbin
-app/mcRegistry/ffffffff000000000000000000000041.tlbin
-app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
-app/mcRegistry/ffffffffd00000000000000000000004.tlbin
-app/mcRegistry/ffffffffd00000000000000000000016.tlbin
-app/mcRegistry/FFFFFFFFD00000000000000000000016.tlbin
-app/mcRegistry/fffffffff0000000000000000000001e.tlbin
-bin/cs
+app/020a0000000000000000000000000000.drbin:vendor/app/020a0000000000000000000000000000.drbin
+app/FFFFFFFF000000000000000000000001.drbin:vendor/app/FFFFFFFF000000000000000000000001.drbin
+app/mcRegistry/00060308060501020000000000000000.tlbin:vendor/app/mcRegistry/00060308060501020000000000000000.tlbin
+app/mcRegistry/02010000080300030000000000000000.tlbin:vendor/app/mcRegistry/02010000080300030000000000000000.tlbin
+app/mcRegistry/07010000000000000000000000000000.tlbin:vendor/app/mcRegistry/07010000000000000000000000000000.tlbin
+app/mcRegistry/07060000000000000000000000000000.tlbin:vendor/app/mcRegistry/07060000000000000000000000000000.tlbin
+app/mcRegistry/08130000000000000000000000000000.tlbin:vendor/app/mcRegistry/08130000000000000000000000000000.tlbin
+app/mcRegistry/ffffffff00000000000000000000000a.tlbin:vendor/app/mcRegistry/ffffffff00000000000000000000000a.tlbin
+app/mcRegistry/ffffffff00000000000000000000000c.tlbin:vendor/app/mcRegistry/ffffffff00000000000000000000000c.tlbin
+app/mcRegistry/ffffffff00000000000000000000000d.tlbin:vendor/app/mcRegistry/ffffffff00000000000000000000000d.tlbin
+app/mcRegistry/ffffffff00000000000000000000000f.tlbin:vendor/app/mcRegistry/ffffffff00000000000000000000000f.tlbin
+app/mcRegistry/ffffffff000000000000000000000004.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000004.tlbin
+app/mcRegistry/ffffffff000000000000000000000005.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000005.tlbin
+app/mcRegistry/ffffffff000000000000000000000012.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000012.tlbin
+app/mcRegistry/ffffffff000000000000000000000013.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000013.tlbin
+app/mcRegistry/ffffffff000000000000000000000016.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000016.tlbin
+app/mcRegistry/ffffffff000000000000000000000017.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000017.tlbin
+app/mcRegistry/ffffffff000000000000000000000019.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000019.tlbin
+app/mcRegistry/ffffffff000000000000000000000021.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000021.tlbin
+app/mcRegistry/ffffffff000000000000000000000041.tlbin:vendor/app/mcRegistry/ffffffff000000000000000000000041.tlbin
+app/mcRegistry/ffffffffd0000000000000000000000a.tlbin:vendor/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
+app/mcRegistry/ffffffffd00000000000000000000004.tlbin:vendor/app/mcRegistry/ffffffffd00000000000000000000004.tlbin
+app/mcRegistry/ffffffffd00000000000000000000016.tlbin:vendor/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
+app/mcRegistry/FFFFFFFFD00000000000000000000016.tlbin:vendor/app/mcRegistry/FFFFFFFFD00000000000000000000016.tlbin
+app/mcRegistry/fffffffff0000000000000000000001e.tlbin:vendor/app/mcRegistry/fffffffff0000000000000000000001e.tlbin
+bin/cs:vendor/bin/cs
 
 ### Noise supppression
 vendor/etc/nxp/BargeIn/Tx_ControlParams_WIDEBAND_ANALOG_DOCK.txt
@@ -142,40 +142,38 @@ vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
 vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
 
 ### OMX
-lib/omx/libOMX.Exynos.AVC.Decoder.so
-lib/omx/libOMX.Exynos.AVC.Encoder.so
-lib/omx/libOMX.Exynos.MPEG4.Decoder.so
-lib/omx/libOMX.Exynos.MPEG4.Encoder.so
-lib/omx/libOMX.Exynos.VP8.Decoder.so
-lib/omx/libOMX.Exynos.VP8.Encoder.so
-lib/omx/libOMX.Exynos.WMV.Decoder.so
+lib/omx/libOMX.Exynos.AVC.Decoder.so:vendor/lib/omx/libOMX.Exynos.AVC.Decoder.so
+lib/omx/libOMX.Exynos.AVC.Encoder.so:vendor/lib/omx/libOMX.Exynos.AVC.Encoder.so
+lib/omx/libOMX.Exynos.MPEG4.Decoder.so:vendor/lib/omx/libOMX.Exynos.MPEG4.Decoder.so
+lib/omx/libOMX.Exynos.MPEG4.Encoder.so:vendor/lib/omx/libOMX.Exynos.MPEG4.Encoder.so
+lib/omx/libOMX.Exynos.VP8.Decoder.so:vendor/lib/omx/libOMX.Exynos.VP8.Decoder.so
+lib/omx/libOMX.Exynos.VP8.Encoder.so:vendor/lib/omx/libOMX.Exynos.VP8.Encoder.so
+lib/omx/libOMX.Exynos.WMV.Decoder.so:vendor/lib/omx/libOMX.Exynos.WMV.Decoder.so
 
 ### RIL
-# opensource rild don't work well for dual sim
-bin/rild
-lib/libsecnativefeature.so
-lib/libsec-ril.so
-lib/libsec-ril-dsds.so
+lib/libsecnativefeature.so:vendor/lib/libsecnativefeature.so
+lib/libsec-ril.so:vendor/lib/libsec-ril.so
+lib/libsec-ril-dsds.so:vendor/lib/libsec-ril-dsds.so
 
 ### Sensors
-lib/hw/sensors.universal7580.so
-lib/libinvensense_hal.so
-lib/libmllite.so
-lib/libmplmpu.so
-lib/libyasalgo.so
+lib/hw/sensors.universal7580.so:vendor/lib/hw/sensors.universal7580.so
+lib/libinvensense_hal.so:vendor/lib/libinvensense_hal.so
+lib/libmllite.so:vendor/lib/libmllite.so
+lib/libmplmpu.so:vendor/lib/libmplmpu.so
+lib/libyasalgo.so:vendor/lib/libyasalgo.so
 
 ### Widevine
-lib/libstagefright_hdcp.so
+lib/libstagefright_hdcp.so:vendor/lib/libstagefright_hdcp.so
 
 ### Wifi
-etc/wifi/bcmdhd_apsta.bin
-etc/wifi/bcmdhd_ibss.bin
-etc/wifi/bcmdhd_mfg.bin
-etc/wifi/bcmdhd_sta.bin
-etc/wifi/nvram_mfg.txt
-etc/wifi/nvram_net.txt
+etc/wifi/bcmdhd_apsta.bin:vendor/etc/wifi/bcmdhd_apsta.bin
+etc/wifi/bcmdhd_ibss.bin:vendor/etc/wifi/bcmdhd_ibss.bin
+etc/wifi/bcmdhd_mfg.bin:vendor/etc/wifi/bcmdhd_mfg.bin
+etc/wifi/bcmdhd_sta.bin:vendor/etc/wifi/bcmdhd_sta.bin
+etc/wifi/nvram_mfg.txt:vendor/etc/wifi/nvram_mfg.txt
+etc/wifi/nvram_net.txt:vendor/etc/wifi/nvram_net.txt
 
 # NFC
-etc/sec_s3fwrn7_rfreg.bin
-lib/hw/nfc_nci.universal7580.so
+etc/sec_s3fwrn7_rfreg.bin:vendor/etc/sec_s3fwrn7_rfreg.bin
+lib/hw/nfc_nci.universal7580.so:vendor/lib/hw/nfc_nci.universal7580.so
 vendor/firmware/sec_s3fwrn7_firmware.bin
