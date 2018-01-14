@@ -13,7 +13,7 @@ function extract() {
         if [ -z $DEST ]; then
             DEST=$FILE
         fi
-        DIR=`dirname $FILE`
+        DIR=`dirname $DEST`
         if [ ! -d $2/$DIR ]; then
             mkdir -p $2/$DIR
         fi

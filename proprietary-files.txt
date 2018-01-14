@@ -19,7 +19,7 @@ lib/hw/gralloc.exynos5.so:vendor/lib/hw/gralloc.exynos5.so
 ### GPS
 bin/gps.cer:vendor/bin/gps.cer
 bin/gpsd:vendor/bin/gpsd
-lib/hw/gps.default.so:lib/hw/gps.universal7580.so
+lib/hw/gps.default.so:vendor/lib/hw/gps.universal7580.so
 lib/libwrappergps.so:vendor/lib/libwrappergps.so
 
 ### Graphics
