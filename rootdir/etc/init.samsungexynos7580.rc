@@ -8,7 +8,7 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
 
 on init
-    export LD_SHIM_LIBS "/system/bin/gpsd|/system/vendor/lib/libshim_gpsd.so:/system/lib/hw/camera.universal7580.so|/system/lib/libshim_camera.so:/system/lib/libexynoscamera.so|/system/vendor/lib/libexynoscamera_shim.so"
+    export LD_SHIM_LIBS "/system/vendor/bin/gpsd|/system/vendor/lib/libshim_gpsd.so:/system/vendor/lib/hw/camera.universal7580.so|/system/lib/libshim_camera.so:/system/vendor/lib/libexynoscamera.so|/system/vendor/lib/libexynoscamera_shim.so"
 	
     mkdir /preload 0771 system system
 
@@ -862,7 +862,7 @@ service ipsec-daemon /system/bin/IPSecService
     group system net_raw inet net_admin
 
 # GPS
-service gpsd /system/bin/gpsd -c /system/etc/gps.xml
+service gpsd /system/vendor/bin/gpsd -c /system/vendor/etc/gps.xml
     class main
     user gps
     group system wakelock inet net_raw
@@ -932,7 +932,7 @@ on charger
 
 
 # DRK/CS service
-service cs_service /system/bin/cs
+service cs_service /system/vendor/bin/cs
     class main
     user system
     group system
