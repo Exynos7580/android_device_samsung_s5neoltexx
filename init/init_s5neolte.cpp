@@ -32,17 +32,20 @@
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
 
-#include <android-base/properties.h>
+#include <android-base/file.h>
 #include <android-base/logging.h>
+#include <android-base/strings.h>
+#include <android-base/properties.h>
 
 #include "property_service.h"
 #include "vendor_init.h"
 
 using android::base::GetProperty;
-using android::init::property_set;
+using android::base::ReadFileToString;
+using android::base::Trim;
 
 void property_override(char const prop[], char const value[])
-{
+{	
 	prop_info *pi;
 
 	pi = (prop_info*) __system_property_find(prop);
@@ -52,22 +55,18 @@ void property_override(char const prop[], char const value[])
 		__system_property_add(prop, strlen(prop), value, strlen(value));
 }
 
-void set_sim_info ()
+void set_sim_info()
 {
-	FILE *file;
 	const char *simslot_count_path = "/proc/simslot_count";
-	char simslot_count[2] = "\0";
-
-	file = fopen(simslot_count_path, "r");
-
-	if (file != NULL) {
-		simslot_count[0] = fgetc(file);
-		property_override("ro.multisim.simslotcount", simslot_count);
-		if(strcmp(simslot_count, "2") == 0) {
+	std::string simslot_count;
+	
+	if (ReadFileToString(simslot_count_path, &simslot_count)) {
+		simslot_count = Trim(simslot_count); // strip newline
+		property_override("ro.multisim.simslotcount", simslot_count.c_str());
+		if (simslot_count.compare("2")) {
 			property_override("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
 			property_override("persist.radio.multisim.config", "dsds");
 		}
-		fclose(file);
 	}
 	else {
 		LOG(ERROR) << "Could not open '" << simslot_count_path << "'\n";
