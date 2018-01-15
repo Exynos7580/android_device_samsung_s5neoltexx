@@ -17,7 +17,7 @@
 # Inherit from Exynos7580-common
 include device/samsung/exynos7580-common/BoardConfigCommon.mk
 
-TARGET_OTA_ASSERT_DEVICE := s5neo3g,s5neo3gxx,s5neolte,s5neoltexx
+TARGET_OTA_ASSERT_DEVICE := s5neolte,s5neoltexx,s5neolteub,s5neoltevl
 
 DEVICE_PATH := device/samsung/s5neoltexx
 
