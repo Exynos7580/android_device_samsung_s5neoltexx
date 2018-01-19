@@ -73,7 +73,6 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant -iwlan0 -Dnl80211 -c/data/m
 service macloader /vendor/bin/macloader
     class main
     oneshot
-    seclabel u:r:macloader:s0
 
 on property:init.svc.macloader=stopped
     chown system root /data/.cid.info
