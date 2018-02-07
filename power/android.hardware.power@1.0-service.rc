@@ -1,0 +1,11 @@
+service power-hal-1-0 /vendor/bin/hw/android.hardware.power@1.0-service
+    class hal
+
+    # TeamNexus-Edit: this power-HAL is a pretty dynamic one, supporting
+    # several cpugovs. As the kernel resets permissions to "rw-rw-r--"
+    # and "root:root", we cannot longer access those files when the cpugov
+    # was changed. Thus we have to elevate this process to root to work
+	# around this problem. go back to system if a solution was founds.
+    user root
+
+    group system
