@@ -199,7 +199,7 @@ static void power_hint(struct power_module *module, power_hint_t hint, void *dat
 			}
 			break;
 
-		case POWER_HINT_DOZING:
+		/*case POWER_HINT_DOZING:
 			if (power_profiles_automated() && power_profiles_dozing()) {
 				ALOGI("%s: hint(POWER_HINT_DOZING, %d, %llu)", __func__, value, (unsigned long long)data);
 				if (value) {
@@ -225,7 +225,7 @@ static void power_hint(struct power_module *module, power_hint_t hint, void *dat
 					}
 				}
 			}
-			break;
+			break;*/
 
 		/***********************************
 		 * Boosting

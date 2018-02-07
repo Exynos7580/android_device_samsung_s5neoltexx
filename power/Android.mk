@@ -14,10 +14,7 @@
 # limitations under the License.
 #
 
-# include user-sided power settings
-include device/samsung/zero-common/power/settings/Android.mk
-
-LOCAL_PATH := device/samsung/zero-common/power
+LOCAL_PATH := $(call my-dir)
 
 #
 # power-HAL
@@ -73,3 +70,6 @@ LOCAL_CFLAGS             := -Wall -Werror -Wno-unused-parameter -Wno-unused-func
 LOCAL_PROPRIETARY_MODULE := true
 
 include $(BUILD_SHARED_LIBRARY)
+
+# include user-sided power settings
+include $(LOCAL_PATH)/settings/Android.mk

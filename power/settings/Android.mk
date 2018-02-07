@@ -82,6 +82,6 @@ LOCAL_SHARED_LIBRARIES := \
 
 LOCAL_C_INCLUDES += \
 	$(JNI_H_INCLUDE) \
-	device/samsung/zero-common/power/
+	$(LOCAL_PATH)/..
 
 include $(BUILD_SHARED_LIBRARY)
