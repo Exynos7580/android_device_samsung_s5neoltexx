@@ -4,13 +4,6 @@ ro.sf.lcd_density=480
 # Surface
 ro.bq.gpu_to_cpu_unsupported=1
 
-# HWC
-debug.hwc.force_gpu=0
-debug.egl.hw=1
-debug.sf.enable_hwc_vds=1
-debug.sf.hw=1
-persist.sys.ui.hw=true
-
 # Games
 debug.egl.force_msaa=true
 
