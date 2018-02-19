@@ -22,80 +22,38 @@
 using namespace std;
 
 struct power_profile_cpucluster {
-
 	unsigned int freq_min;
 	unsigned int freq_max;
 
+	struct {
+		bool cpu0;
+		bool cpu1;
+		bool cpu2;
+		bool cpu3;
+	} cores;
 };
 
 struct power_profile {
-
 	struct {
-
-		struct power_profile_cpucluster cl0;
-
-		struct power_profile_cpucluster cl1;
-
-		// we use same settings for both cl0 and cl1
-		struct {
-
-			int down_load;
-			int down_step;
-			int down_lts_ratio;
-			int down_lts_elev;
-
-			int up_load;
-			int up_step;
-			int up_lts_ratio;
-			int up_lts_elev;
-
-		} nexus;
-
+		struct power_profile_cpucluster apollo;
+		struct power_profile_cpucluster atlas;
 	} cpu;
 
 	struct {
+		struct {
+			unsigned int freq_min;
+			unsigned int freq_max;
+		} dvfs;
 
-		bool boost;
-		bool semiboost;
-
-		unsigned int sb_down_thres;
-		unsigned int sb_up_thres;
-
-		bool active_down_migration;
-		bool aggressive_up_migration;
-
-	} hmp;
-
-	struct {
-
-		unsigned int min_lock;
-		unsigned int max_lock;
-
-		unsigned int highspeed_clock;
-		unsigned int highspeed_load;
-
+		struct {
+			unsigned int freq;
+			unsigned int load;
+		} highspeed;
 	} gpu;
 
 	struct {
-
-		bool booster;
-		string booster_table;
-
-	} input;
-
-	struct {
-
-		bool hotplugging;
-		int ipa_control_temp;
-
-	} thermal;
-
-	struct {
-
 		bool power_efficient_workqueue;
-
 	} kernel;
-
 } power_profiles_data[PROFILE_MAX_USABLE + 1] = {
 
 	/***********
@@ -103,48 +61,36 @@ struct power_profile {
 	 */
 	{
 		.cpu = {
-			.cl0 = {
-				.freq_max = 400000,
+			.apollo = {
 				.freq_min = 200000,
-			},
-			.cl1 = {
 				.freq_max = 400000,
+				.cores = {
+					.cpu0 = true,
+					.cpu1 = true,
+					.cpu2 = true,
+					.cpu3 = true,
+				},
+			},
+			.atlas = {
 				.freq_min = 200000,
+				.freq_max = 400000,
+				.cores = {
+					.cpu0 = false,
+					.cpu1 = false,
+					.cpu2 = false,
+					.cpu3 = false,
+				},
 			},
-			.nexus = {
-				.down_load = 50,
-				.down_step = 2,
-				.down_lts_ratio = 0,
-				.down_lts_elev = 0,
-
-				.up_load = 60,
-				.up_step = 1,
-				.up_lts_ratio = 0,
-				.up_lts_elev = 0,
-			},
-		},
-		.hmp = {
-			.boost = false,
-			.semiboost = false,
-			.sb_down_thres = 150,
-			.sb_up_thres = 400,
-			.active_down_migration = true,
-			.aggressive_up_migration = false,
 		},
 		.gpu = {
-			.min_lock = 100,
-			.max_lock = 100,
-
-			.highspeed_clock = 100,
-			.highspeed_load = 100,
-		},
-		.input = {
-			.booster = false,
-			.booster_table = "0 0 0 0 0 0"
-		},
-		.thermal = {
-			.hotplugging = false,
-			.ipa_control_temp = 35,
+			.dvfs = {
+				.freq_min = 100,
+				.freq_max = 100,
+			},
+			.highspeed = {
+				.freq = 100,
+				.load = 100,
+			},
 		},
 		.kernel = {
 			.power_efficient_workqueue = true,
@@ -156,48 +102,36 @@ struct power_profile {
 	 */
 	{
 		.cpu = {
-			.cl0 = {
-				.freq_max = 1300000,
-				.freq_min = 400000,
-			},
-			.cl1 = {
-				.freq_max = 1900000,
+			.apollo = {
 				.freq_min = 200000,
+				.freq_max = 1100000,
+				.cores = {
+					.cpu0 = true,
+					.cpu1 = true,
+					.cpu2 = true,
+					.cpu3 = true,
+				},
 			},
-			.nexus = {
-				.down_load = 40,
-				.down_step = 2,
-				.down_lts_ratio = 150,
-				.down_lts_elev = 1,
-
-				.up_load = 50,
-				.up_step = 1,
-				.up_lts_ratio = 150,
-				.up_lts_elev = 1,
+			.atlas = {
+				.freq_min = 200000,
+				.freq_max = 1300000,
+				.cores = {
+					.cpu0 = false,
+					.cpu1 = false,
+					.cpu2 = false,
+					.cpu3 = false,
+				},
 			},
-		},
-		.hmp = {
-			.boost = false,
-			.semiboost = false,
-			.sb_down_thres = 150,
-			.sb_up_thres = 400,
-			.active_down_migration = true,
-			.aggressive_up_migration = false,
 		},
 		.gpu = {
-			.min_lock = 100,
-			.max_lock = 544,
-
-			.highspeed_clock = 266,
-			.highspeed_load = 99,
-		},
-		.input = {
-			.booster = true,
-			.booster_table = "300 0 400000 0 0 0"
-		},
-		.thermal = {
-			.hotplugging = false,
-			.ipa_control_temp = 45,
+			.dvfs = {
+				.freq_min = 100,
+				.freq_max = 544,
+			},
+			.highspeed = {
+				.freq = 266,
+				.load = 99,
+			},
 		},
 		.kernel = {
 			.power_efficient_workqueue = true,
@@ -209,48 +143,36 @@ struct power_profile {
 	 */
 	{
 		.cpu = {
-			.cl0 = {
-				.freq_max = 1500000,
-				.freq_min = 600000,
-			},
-			.cl1 = {
-				.freq_max = 2100000,
+			.apollo = {
 				.freq_min = 400000,
+				.freq_max = 1600000,
+				.cores = {
+					.cpu0 = true,
+					.cpu1 = true,
+					.cpu2 = true,
+					.cpu3 = true,
+				},
 			},
-			.nexus = {
-				.down_load = 40,
-				.down_step = 1,
-				.down_lts_ratio = 125,
-				.down_lts_elev = 1,
-
-				.up_load = 50,
-				.up_step = 1,
-				.up_lts_ratio = 125,
-				.up_lts_elev = 2,
+			.atlas = {
+				.freq_min = 400000,
+				.freq_max = 1600000,
+				.cores = {
+					.cpu0 = true,
+					.cpu1 = true,
+					.cpu2 = true,
+					.cpu3 = true,
+				},
 			},
-		},
-		.hmp = {
-			.boost = false,
-			.semiboost = true,
-			.sb_down_thres = 125,
-			.sb_up_thres = 175,
-			.active_down_migration = true,
-			.aggressive_up_migration = false,
 		},
 		.gpu = {
-			.min_lock = 350,
-			.max_lock = 772,
-
-			.highspeed_clock = 700,
-			.highspeed_load = 80,
-		},
-		.input = {
-			.booster = true,
-			.booster_table = "300 0 800000 0 0 0"
-		},
-		.thermal = {
-			.hotplugging = false,
-			.ipa_control_temp = 65,
+			.dvfs = {
+				.freq_min = 100,
+				.freq_max = 600,
+			},
+			.highspeed = {
+				.freq = 700,
+				.load = 80,
+			},
 		},
 		.kernel = {
 			.power_efficient_workqueue = true,
@@ -262,48 +184,36 @@ struct power_profile {
 	 */
 	{
 		.cpu = {
-			.cl0 = {
-				.freq_max = 1704000,
-				.freq_min = 1000000,
-			},
-			.cl1 = {
-				.freq_max = 2304000,
+			.apollo = {
 				.freq_min = 800000,
+				.freq_max = 1600000,
+				.cores = {
+					.cpu0 = true,
+					.cpu1 = true,
+					.cpu2 = true,
+					.cpu3 = true,
+				},
 			},
-			.nexus = {
-				.down_load = 20,
-				.down_step = 1,
-				.down_lts_ratio = 100,
-				.down_lts_elev = 2,
-
-				.up_load = 30,
-				.up_step = 3,
-				.up_lts_ratio = 100,
-				.up_lts_elev = 4,
+			.atlas = {
+				.freq_min = 800000,
+				.freq_max = 1600000,
+				.cores = {
+					.cpu0 = true,
+					.cpu1 = true,
+					.cpu2 = true,
+					.cpu3 = true,
+				},
 			},
-		},
-		.hmp = {
-			.boost = true,
-			.semiboost = false,
-			.sb_down_thres = 75,
-			.sb_up_thres = 125,
-			.active_down_migration = false,
-			.aggressive_up_migration = true,
 		},
 		.gpu = {
-			.min_lock = 600,
-			.max_lock = 772,
-
-			.highspeed_clock = 772,
-			.highspeed_load = 60,
-		},
-		.input = {
-			.booster = true,
-			.booster_table = "300 0 1200000 0 0 0"
-		},
-		.thermal = {
-			.hotplugging = false,
-			.ipa_control_temp = 75,
+			.dvfs = {
+				.freq_min = 400,
+				.freq_max = 80,
+			},
+			.highspeed = {
+				.freq = 772,
+				.load = 60,
+			},
 		},
 		.kernel = {
 			.power_efficient_workqueue = false,
@@ -315,48 +225,36 @@ struct power_profile {
 	 */
 	{
 		.cpu = {
-			.cl0 = {
-				.freq_max = 1400000,
+			.apollo = {
+				.freq_min = 600000,
+				.freq_max = 1100000,
+				.cores = {
+					.cpu0 = true,
+					.cpu1 = true,
+					.cpu2 = true,
+					.cpu3 = true,
+				},
+			},
+			.atlas = {
 				.freq_min = 400000,
+				.freq_max = 1000000,
+				.cores = {
+					.cpu0 = false,
+					.cpu1 = false,
+					.cpu2 = false,
+					.cpu3 = false,
+				},
 			},
-			.cl1 = {
-				.freq_max = 2000000,
-				.freq_min = 200000,
-			},
-			.nexus = {
-				.down_load = 35,
-				.down_step = 1,
-				.down_lts_ratio = 135,
-				.down_lts_elev = 1,
-
-				.up_load = 45,
-				.up_step = 1,
-				.up_lts_ratio = 135,
-				.up_lts_elev = 1,
-			},
-		},
-		.hmp = {
-			.boost = false,
-			.semiboost = false,
-			.sb_down_thres = 150,
-			.sb_up_thres = 400,
-			.active_down_migration = true,
-			.aggressive_up_migration = false,
 		},
 		.gpu = {
-			.min_lock = 266,
-			.max_lock = 600,
-
-			.highspeed_clock = 420,
-			.highspeed_load = 90,
-		},
-		.input = {
-			.booster = true,
-			.booster_table = "300 0 600000 0 0 0"
-		},
-		.thermal = {
-			.hotplugging = false,
-			.ipa_control_temp = 55,
+			.dvfs = {
+				.freq_min = 100,
+				.freq_max = 600,
+			},
+			.highspeed = {
+				.freq = 420,
+				.load = 90,
+			},
 		},
 		.kernel = {
 			.power_efficient_workqueue = true,
@@ -368,48 +266,36 @@ struct power_profile {
 	 */
 	{
 		.cpu = {
-			.cl0 = {
+			.apollo = {
+				.freq_min = 1000000,
 				.freq_max = 1600000,
-				.freq_min = 800000,
+				.cores = {
+					.cpu0 = true,
+					.cpu1 = true,
+					.cpu2 = true,
+					.cpu3 = true,
+				},
 			},
-			.cl1 = {
-				.freq_max = 2200000,
+			.atlas = {
 				.freq_min = 600000,
+				.freq_max = 1600000,
+				.cores = {
+					.cpu0 = true,
+					.cpu1 = true,
+					.cpu2 = true,
+					.cpu3 = true,
+				},
 			},
-			.nexus = {
-				.down_load = 30,
-				.down_step = 1,
-				.down_lts_ratio = 115,
-				.down_lts_elev = 1,
-
-				.up_load = 40,
-				.up_step = 2,
-				.up_lts_ratio = 115,
-				.up_lts_elev = 3,
-			},
-		},
-		.hmp = {
-			.boost = false,
-			.semiboost = true,
-			.sb_down_thres = 75,
-			.sb_up_thres = 125,
-			.active_down_migration = false,
-			.aggressive_up_migration = true,
 		},
 		.gpu = {
-			.min_lock = 544,
-			.max_lock = 772,
-
-			.highspeed_clock = 772,
-			.highspeed_load = 70,
-		},
-		.input = {
-			.booster = true,
-			.booster_table = "300 0 1000000 0 0 0"
-		},
-		.thermal = {
-			.hotplugging = false,
-			.ipa_control_temp = 70,
+			.dvfs = {
+				.freq_min = 266,
+				.freq_max = 90,
+			},
+			.highspeed = {
+				.freq = 772,
+				.load = 70,
+			},
 		},
 		.kernel = {
 			.power_efficient_workqueue = false,

@@ -28,8 +28,7 @@ LOCAL_SRC_FILES := \
 LOCAL_SHARED_LIBRARIES := \
 	libcutils \
 	libhardware \
-	liblog \
-	libpower-config
+	liblog
 
 LOCAL_MODULE               := power.$(TARGET_BOARD_PLATFORM)
 LOCAL_MODULE_RELATIVE_PATH := hw
@@ -47,29 +46,3 @@ endif
 # LOCAL_CFLAGS += -DPOWER_MULTITHREAD_LOCK_PROTECTION
 
 include $(BUILD_SHARED_LIBRARY)
-
-#
-# power-configuration library
-#
-include $(CLEAR_VARS)
-
-LOCAL_SRC_FILES := \
-	config.cpp \
-	utils.cpp
-
-LOCAL_C_INCLUDES += system/core/base/include/
-
-LOCAL_SHARED_LIBRARIES := \
-	libbase \
-	libcutils \
-	liblog
-
-LOCAL_MODULE             := libpower-config
-LOCAL_MODULE_TAGS        := optional
-LOCAL_CFLAGS             := -Wall -Werror -Wno-unused-parameter -Wno-unused-function
-LOCAL_PROPRIETARY_MODULE := true
-
-include $(BUILD_SHARED_LIBRARY)
-
-# include user-sided power settings
-include $(LOCAL_PATH)/settings/Android.mk

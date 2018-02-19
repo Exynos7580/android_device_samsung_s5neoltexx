@@ -30,6 +30,7 @@ using namespace std;
 /** Common */
 bool update_current_cpugov_path(const int core);
 bool assert_cpugov(const int core, const string asserted_cpugov);
+bool assert_cpugov_file(const int core, const string file);
 bool is_file(const string path);
 bool is_dir(const string path);
 

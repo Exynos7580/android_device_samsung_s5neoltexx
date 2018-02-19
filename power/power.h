@@ -35,15 +35,11 @@ using namespace std;
 
 #define PROFILE_MAX_USABLE           5
 
-#define POWER_DT2W_ENABLED                "/sys/android_touch/doubletap2wake"
-#define POWER_TOUCHKEYS_ENABLED           "/sys/class/sec/sec_touchkey/input/enabled"
-#define POWER_TOUCHSCREEN_NAME            "/sys/class/input/input1/name"
-#define POWER_TOUCHSCREEN_NAME_EXPECT     "sec_touchscreen"
-#define POWER_TOUCHSCREEN_ENABLED_FLAT    "/sys/class/input/input1/enabled"
-#define POWER_TOUCHSCREEN_ENABLED_EDGE    "/sys/class/input/input0/enabled"
-#define POWER_TOUCHKEYS_BRIGHTNESS        "/sys/class/sec/sec_touchkey/brightness"
-#define POWER_FINGERPRINT_REGULATOR       "/sys/class/fingerprint/fingerprint/regulator"
-#define POWER_FINGERPRINT_WAKELOCKS       "/sys/class/fingerprint/fingerprint/wakelocks"
+#define POWER_TOUCHKEYS_ENABLED           "/sys/class/input/input1/enabled"
+#define POWER_TOUCHSCREEN_ENABLED         "/sys/class/input/input2/enabled"
+//#define POWER_DT2W_ENABLED                "/sys/class/sec/tsp/dt2w_enable"
+
+#define POWER_DEFAULT_BOOSTPULSE    50000
 
 #ifdef POWER_MULTITHREAD_LOCK_PROTECTION
   #define POWER_LOCK()      pthread_mutex_lock(&power->lock)
@@ -53,20 +49,13 @@ using namespace std;
   #define POWER_UNLOCK()    do { } while(0)
 #endif /* POWER_MULTITHREAD_LOCK_PROTECTION */
 
-enum sec_device_variant {
-	FLAT,
-	EDGE
-};
-
 struct sec_power_module {
 
 	struct power_module base;
 	pthread_mutex_t lock;
 
 	bool initialized;
-	bool dozing;
-
-	enum sec_device_variant variant;
+	bool screen_on;
 
 	struct {
 		int current;
@@ -75,8 +64,9 @@ struct sec_power_module {
 
 	struct {
 		bool touchkeys_enabled;
+#ifdef POWER_DT2W_ENABLED
 		bool dt2w;
-		string touchscreen_control_path;
+#endif
 	} input;
 
 };
@@ -90,13 +80,12 @@ static void power_hint(struct power_module *module, power_hint_t hint, void *dat
 
 /** Profiles */
 static void power_set_profile(struct sec_power_module *power, int profile);
-
-/** Boost */
-static void power_boostpulse(int duration);
+static void power_reset_profile(struct sec_power_module *power);
 
 /** Inputs */
-static void power_fingerprint_state(bool state);
+#ifdef POWER_DT2W_ENABLED
 static void power_dt2w_state(struct sec_power_module *power, bool state);
+#endif
 static void power_input_device_state(struct sec_power_module *power, bool state);
 static void power_set_interactive(struct power_module* module, int on);
 
