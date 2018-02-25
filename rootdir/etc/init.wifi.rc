@@ -49,7 +49,7 @@ on boot
     chown wifi wifi /sys/module/dhd/parameters/firmware_path
 
 # Run deferred initcalls of builtin kernel modules (bcmdhd)
-service wifiloader /system/bin/wifiloader
+service wifiloader /vendor/bin/wifiloader
     class main
     oneshot
 
