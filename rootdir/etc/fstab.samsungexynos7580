@@ -4,6 +4,7 @@
 # data partition must be located at the bottom for supporting device encryption
 
 #<src>                                                  <mnt_point> <type>  <mnt_flags and options>                                                         <fs_mgr_flags>
+/dev/block/platform/13540000.dwmmc0/by-name/SYSTEM      /system     ext4    ro,noatime,errors=panic,noload,block_validity                                   wait,recoveryonly
 /dev/block/platform/13540000.dwmmc0/by-name/BOOT        /boot       emmc    defaults                                                                        defaults
 /dev/block/platform/13540000.dwmmc0/by-name/OTA         /misc       emmc    defaults                                                                        defaults
 /dev/block/platform/13540000.dwmmc0/by-name/RECOVERY    /recovery   emmc    defaults                                                                        defaults
