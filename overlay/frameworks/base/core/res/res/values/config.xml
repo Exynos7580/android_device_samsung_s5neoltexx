@@ -184,7 +184,9 @@
      for different hardware and product builds. -->
     <string name="config_radio_access_family">GSM | WCDMA | LTE | CDMA | EVDO</string>
 
-    <!-- If enabled, capacitive keys will only light up when pressed.
-         Otherwise, the buttons will light up whenever the user interacts with the device -->
-    <!-- <bool name="config_buttonLightOnKeypressOnly">true</bool> -->
+     <!-- Values for GPS configuration -->
+     <string-array translatable="false" name="config_gpsParameters">
+        <item>XTRA_SERVER_1=http://gllto1.glpals.com/4day/v3/latest/lto2.dat</item>
+        <item>XTRA_SERVER_2=http://gllto2.glpals.com/4day/v3/latest/lto2.dat</item>
+     </string-array>
 </resources>
