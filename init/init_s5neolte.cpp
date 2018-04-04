@@ -55,6 +55,13 @@ void property_override(char const prop[], char const value[])
 		__system_property_add(prop, strlen(prop), value, strlen(value));
 }
 
+void property_override_dual(char const system_prop[],
+		char const vendor_prop[], char const value[])
+{
+	property_override(system_prop, value);
+	property_override(vendor_prop, value);
+}
+
 void set_sim_info()
 {
 	const char *simslot_count_path = "/proc/simslot_count";
@@ -85,26 +92,26 @@ void vendor_load_properties()
 
 	if (bootloader.find("G903F") != std::string::npos) {
 		/* SM-G903F */
-		property_override("ro.build.fingerprint", "samsung/s5neoltexx/s5neolte:6.0.1/MMB29K/G903FXXU1BQC1:user/release-keys");
+		property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/s5neoltexx/s5neolte:6.0.1/MMB29K/G903FXXU1BQC1:user/release-keys");
 		property_override("ro.build.description", "s5neoltexx-user 6.0.1 MMB29K G903FXXU1BQC1 release-keys");
-		property_override("ro.product.model", "SM-G903F");
-		property_override("ro.product.device", "s5neolte");
+		property_override_dual("ro.product.model", "ro.vendor.product.model", "SM-G903F");
+		property_override_dual("ro.product.device", "ro.vendor.product.device", "s5neolte");
 		property_override("ro.product.name", "s5neoltexx");
 	}
 	else if (bootloader.find("G903M") != std::string::npos) {
 		/* SM-G903M */
-		property_override("ro.build.fingerprint", "samsung/s5neolteub/s5neolte:6.0.1/MMB29K/G903MUBU1BPD3:user/release-keys");
+		property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/s5neolteub/s5neolte:6.0.1/MMB29K/G903MUBU1BPD3:user/release-keys");
 		property_override("ro.build.description", "s5neolteub-user 6.0.1 MMB29K G903MUBU1BPD3 release-keys");
-		property_override("ro.product.model", "SM-G903M");
-		property_override("ro.product.device", "s5neolte");
+		property_override_dual("ro.product.model", "ro.vendor.product.model", "SM-G903M");
+		property_override_dual("ro.product.device", "ro.vendor.product.device", "s5neolte");
 		property_override("ro.product.name", "s5neolteub");
 	}
 	else {
 		/* SM-G903W */
-		property_override("ro.build.fingerprint", "samsung/s5neoltevl/s5neoltecan:6.0.1/MMB29K/G903WVLU1BQA1:user/release-keys");
+		property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "samsung/s5neoltevl/s5neoltecan:6.0.1/MMB29K/G903WVLU1BQA1:user/release-keys");
 		property_override("ro.build.description", "s5neoltevl-user 6.0.1 MMB29K G903WVLU1BQA1 release-keys");
-		property_override("ro.product.model", "SM-G903W");
-		property_override("ro.product.device", "s5neoltecan");
+		property_override_dual("ro.product.model", "ro.vendor.product.model", "SM-G903W");
+		property_override_dual("ro.product.device", "ro.vendor.product.device", "s5neoltecan");
 		property_override("ro.product.name", "s5neoltevl");
 	}
 
