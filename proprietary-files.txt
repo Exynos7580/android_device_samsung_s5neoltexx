@@ -213,6 +213,3 @@ etc/wifi/nvram_net.txt
 etc/sec_s3fwrn7_rfreg.bin
 lib/hw/nfc_nci.universal7580.so
 vendor/firmware/sec_s3fwrn7_firmware.bin
-
-# DRM
-vendor/lib/mediadrm/libdrmclearkeyplugin.so
