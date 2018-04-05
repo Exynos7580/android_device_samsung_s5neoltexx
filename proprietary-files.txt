@@ -191,10 +191,6 @@ vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_EARPIECE.txt
 vendor/etc/nxp/mVoIPSec/Rx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
 vendor/etc/nxp/mVoIPSec/Rx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
 
-### RIL
-lib/libsec-ril.so
-lib/libsec-ril-dsds.so
-
 ### Sensors
 lib/hw/sensors.universal7580.so
 lib/libinvensense_hal.so
