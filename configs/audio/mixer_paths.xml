@@ -3118,12 +3118,10 @@
     <path name="gain-media-mic" />
   </path>
 
-  <!-- Samsung uses the same path
   <path name="headset-mic">
     <path name="media-headset-mic" />
     <path name="gain-media-headset-mic" />
   </path>
-  -->
 
   <path name="voice-mic">
     <path name="incall_nb-handset-mic" />
