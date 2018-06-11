@@ -25,5 +25,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Inherit from Exynos7580-common
 $(call inherit-product, device/samsung/exynos7580-common/device-common.mk)
 
+# Vendor security patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lineage.build.vendor_security_patch=2017-03-01
+
 # Get non-open-source specific aspects
 $(call inherit-product-if-exists, vendor/samsung/s5neoltexx/s5neoltexx-vendor.mk)
