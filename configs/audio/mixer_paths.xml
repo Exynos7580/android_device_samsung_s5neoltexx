@@ -1800,7 +1800,7 @@
 	<path name="gain-incall_nb-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
+		<ctl name="DAC Gain" value="132" />
 		<ctl name="Speaker Volume" value="9" />
 	</path>
 
@@ -1877,7 +1877,7 @@
 	<path name="gain-incall_wb-speaker">
 		<ctl name="S2801 MIX1_LVL" value="0" />
 		<ctl name="S2801 MIX2_LVL" value="0" />
-		<ctl name="DAC Gain" value="127" />
+		<ctl name="DAC Gain" value="132" />
 		<ctl name="Speaker Volume" value="0" />
 	</path>
 
