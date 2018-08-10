@@ -1,4 +1,6 @@
-# Copyright (C) 2011 The Android Open Source Project
+#
+# Copyright (C) 2016 The CyanogenMod Project
+#           (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,25 +13,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-#
-# This file is the build configuration for a full Android
-# build for s5neoltexx hardware. This cleanly combines a set of
-# device-specific aspects (drivers) with a device-agnostic
-# product configuration (apps). Except for a few implementation
-# details, it only fundamentally contains two inherit-product
-# lines, full and s5neoltexx, hence its name.
 #
 
-PRODUCT_RUNTIMES := runtime_libart_default
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/samsung/s5neoltexx/device.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
+# Inherit common Lineage phone.
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+
 # Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := s5neoltexx
-PRODUCT_DEVICE := s5neolte
-PRODUCT_BRAND := Samsung
-PRODUCT_MANUFACTURER := samsung
+PRODUCT_NAME := lineage_s5neoltexx
+PRODUCT_DEVICE := s5neoltexx
 PRODUCT_MODEL := SM-G903F
+PRODUCT_BRAND := samsung
+PRODUCT_MANUFACTURER := samsung
+PRODUCT_GMS_CLIENTID_BASE := android-samsung
