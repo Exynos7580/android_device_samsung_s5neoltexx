@@ -791,7 +791,7 @@
 	</path>
 
 	<!-- camcorder input -->
-	<path name="camcorder-mic">
+	<path name="camcorder-mic-oe">
 		<path name="route-ap-rx" />
 		<path name="dev-dual-main_left-2nd_right-mic" />
 	</path>
@@ -801,7 +801,7 @@
 	</path>
 
 	<path name="camcorder-headphone-mic">
-		<path name="camcorder-mic" />
+		<path name="camcorder-mic-oe" />
 	</path>
 
 	<!-- voice input -->
@@ -2013,7 +2013,7 @@
 	</path>
 
 	<!-- camcorder input volume -->
-	<path name="gain-camcorder-mic">
+	<path name="gain-camcorder-mic-oe">
 		<ctl name="MIC1 Volume" value="18" />
 		<ctl name="MIC1 Boost Volume" value="2" />
 		<ctl name="MIC2 Volume" value="18" />
@@ -3179,10 +3179,10 @@
     <path name="gain-media-bt-sco-headset-in" />
   </path>
 
-  <!-- samsung uses the same path
   <path name="camcorder-mic">
+    <path name="camcorder-mic-oe" />
+    <path name="gain-camcorder-mic-oe" />
   </path>
-  -->
 
   <path name="voice-rec-headset-mic">
     <path name="recording-headset-mic" />
